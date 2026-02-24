@@ -14,8 +14,8 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
   const { settings } = useAppStore();
   const navItems = [
     { id: 'dashboard', label: 'Início', icon: Home },
-    { id: 'schedule', label: 'Agenda', icon: Calendar },
     { id: 'clients', label: 'Clientes', icon: Users },
+    { id: 'schedule', label: 'Agenda', icon: Calendar },
     { id: 'quotes', label: 'Orçamentos', icon: FileText },
     { id: 'settings', label: 'Configurações', icon: Settings },
   ];
