@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Users, FileText, Home, Menu } from 'lucide-react';
+import { Calendar, Users, FileText, Home, Menu, Settings } from 'lucide-react';
 import { cn } from '../utils/cn';
 
 interface LayoutProps {
@@ -14,6 +14,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
     { id: 'schedule', label: 'Agenda', icon: Calendar },
     { id: 'clients', label: 'Clientes', icon: Users },
     { id: 'quotes', label: 'Orçamentos', icon: FileText },
+    { id: 'settings', label: 'Configurações', icon: Settings },
   ];
 
   return (

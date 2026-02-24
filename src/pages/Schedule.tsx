@@ -15,7 +15,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
 export function Schedule() {
-  const { jobs, clients, addJob, updateJob } = useAppStore();
+  const { jobs, clients, addJob, updateJob, settings } = useAppStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [filter, setFilter] = useState<'all' | 'today' | 'upcoming'>('all');
 
@@ -81,7 +81,7 @@ export function Schedule() {
       // Header
       doc.setFontSize(20);
       doc.setTextColor(37, 99, 235); // blue-600
-      doc.text('SmartAir', 14, 22);
+      doc.text(settings.companyName, 14, 22);
 
       doc.setFontSize(10);
       doc.setTextColor(100);
@@ -354,7 +354,7 @@ export function Schedule() {
                       </div>
 
                       <div className="flex gap-2">
-                        {job.paymentStatus === 'paid' && (
+                        {job.jobStatus === 'completed' && job.paymentStatus === 'paid' && (
                           <Button
                             variant="outline"
                             size="sm"

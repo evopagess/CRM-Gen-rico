@@ -45,8 +45,13 @@ export interface Quote {
   createdAt: string;
 }
 
+export interface Settings {
+  companyName: string;
+}
+
 export interface AppState {
   clients: Client[];
   jobs: Job[];
   quotes: Quote[];
+  settings: Settings;
 }

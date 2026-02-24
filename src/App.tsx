@@ -10,6 +10,7 @@ import { Dashboard } from './pages/Dashboard';
 import { Schedule } from './pages/Schedule';
 import { Clients } from './pages/Clients';
 import { Quotes } from './pages/Quotes';
+import { Settings } from './pages/Settings';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -24,6 +25,8 @@ export default function App() {
         return <Clients />;
       case 'quotes':
         return <Quotes />;
+      case 'settings':
+        return <Settings />;
       default:
         return <Dashboard />;
     }

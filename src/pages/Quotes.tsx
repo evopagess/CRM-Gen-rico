@@ -14,7 +14,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
 export function Quotes() {
-  const { quotes, clients, addQuote, updateQuote, deleteQuote } = useAppStore();
+  const { quotes, clients, addQuote, updateQuote, deleteQuote, settings } = useAppStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [newQuote, setNewQuote] = useState({
@@ -88,7 +88,7 @@ export function Quotes() {
       // Header
       doc.setFontSize(20);
       doc.setTextColor(37, 99, 235); // blue-600
-      doc.text('SmartAir', 14, 22);
+      doc.text(settings.companyName, 14, 22);
 
       doc.setFontSize(10);
       doc.setTextColor(100);

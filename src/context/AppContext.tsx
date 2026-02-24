@@ -11,12 +11,16 @@ interface AppContextType extends AppState {
   addQuote: (quote: Quote) => void;
   updateQuote: (quote: Quote) => void;
   deleteQuote: (id: string) => void;
+  updateSettings: (settings: AppState['settings']) => void;
 }
 
 const defaultState: AppState = {
   clients: [],
   jobs: [],
   quotes: [],
+  settings: {
+    companyName: 'SmartAir'
+  }
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -26,7 +30,12 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     const saved = localStorage.getItem('hvac_app_state');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        return {
+          ...defaultState,
+          ...parsed,
+          settings: parsed.settings || defaultState.settings
+        };
       } catch (e) {
         console.error('Failed to parse state from local storage', e);
       }
@@ -49,13 +58,15 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const addQuote = (quote: Quote) => setState(s => ({ ...s, quotes: [...s.quotes, quote] }));
   const updateQuote = (quote: Quote) => setState(s => ({ ...s, quotes: s.quotes.map(q => q.id === quote.id ? quote : q) }));
   const deleteQuote = (id: string) => setState(s => ({ ...s, quotes: s.quotes.filter(q => q.id !== id) }));
+  const updateSettings = (settings: AppState['settings']) => setState(s => ({ ...s, settings }));
 
   return (
     <AppContext.Provider value={{
       ...state,
       addClient, updateClient, deleteClient,
       addJob, updateJob, deleteJob,
-      addQuote, updateQuote, deleteQuote
+      addQuote, updateQuote, deleteQuote,
+      updateSettings
     }}>
       {children}
     </AppContext.Provider>
