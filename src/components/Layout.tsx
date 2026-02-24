@@ -24,7 +24,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
           <div className="bg-white text-blue-600 p-1.5 rounded-md">
             <Menu size={20} />
           </div>
-          <h1 className="font-bold text-lg tracking-tight">ClimaPro</h1>
+          <h1 className="font-bold text-lg tracking-tight">SmartAir</h1>
         </div>
       </header>
 
@@ -34,7 +34,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
           <div className="bg-blue-600 text-white p-2 rounded-lg">
             <Menu size={24} />
           </div>
-          <h1 className="font-bold text-xl text-gray-900 tracking-tight">ClimaPro</h1>
+          <h1 className="font-bold text-xl text-gray-900 tracking-tight">SmartAir</h1>
         </div>
         <nav className="flex-1 p-4 space-y-1">
           {navItems.map((item) => {
@@ -46,8 +46,8 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
                 onClick={() => setActiveTab(item.id)}
                 className={cn(
                   "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors",
-                  isActive 
-                    ? "bg-blue-50 text-blue-700" 
+                  isActive
+                    ? "bg-blue-50 text-blue-700"
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 )}
               >

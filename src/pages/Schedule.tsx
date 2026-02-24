@@ -81,7 +81,7 @@ export function Schedule() {
       // Header
       doc.setFontSize(20);
       doc.setTextColor(37, 99, 235); // blue-600
-      doc.text('ClimaPro', 14, 22);
+      doc.text('SmartAir', 14, 22);
 
       doc.setFontSize(10);
       doc.setTextColor(100);

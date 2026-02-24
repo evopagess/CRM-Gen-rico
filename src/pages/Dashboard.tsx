@@ -13,7 +13,7 @@ export function Dashboard() {
 
   const todayJobs = jobs.filter(job => isToday(parseISO(job.date)));
   const pendingPayments = jobs.filter(job => job.paymentStatus === 'pending' && job.jobStatus === 'completed');
-  
+
   const totalPending = pendingPayments.reduce((acc, job) => acc + job.price, 0);
   const totalEarnedToday = todayJobs
     .filter(job => job.paymentStatus === 'paid')
@@ -31,7 +31,7 @@ export function Dashboard() {
       {isNewUser && (
         <Card className="bg-blue-50 border-blue-200">
           <CardContent className="p-6">
-            <h2 className="text-xl font-bold text-blue-900 mb-2">Bem-vindo ao ClimaPro! 👋</h2>
+            <h2 className="text-xl font-bold text-blue-900 mb-2">Bem-vindo ao SmartAir! 👋</h2>
             <p className="text-blue-800 mb-6">
               Parece que você está começando agora. Siga os passos abaixo para organizar seu negócio:
             </p>
@@ -84,7 +84,7 @@ export function Dashboard() {
             </p>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gray-500">A Receber</CardTitle>
@@ -145,8 +145,8 @@ export function Dashboard() {
                       <p className="font-medium text-sm text-gray-900">{job.description}</p>
                       <p className="text-xs text-gray-500 mt-1">
                         {format(parseISO(job.date), "HH:mm")} • {
-                          job.type === 'installation' ? 'Instalação' : 
-                          job.type === 'maintenance' ? 'Manutenção' : 'Reparo'
+                          job.type === 'installation' ? 'Instalação' :
+                            job.type === 'maintenance' ? 'Manutenção' : 'Reparo'
                         }
                       </p>
                     </div>
@@ -155,9 +155,9 @@ export function Dashboard() {
                         className={cn(
                           "appearance-none pl-2.5 pr-7 py-0.5 rounded-full text-xs font-semibold cursor-pointer outline-none focus:ring-2 focus:ring-blue-500 border-0",
                           job.jobStatus === 'completed' ? "bg-green-100 text-green-800" :
-                          job.jobStatus === 'in_progress' ? "bg-yellow-100 text-yellow-800" :
-                          job.jobStatus === 'canceled' ? "bg-red-100 text-red-800" :
-                          "bg-blue-100 text-blue-800"
+                            job.jobStatus === 'in_progress' ? "bg-yellow-100 text-yellow-800" :
+                              job.jobStatus === 'canceled' ? "bg-red-100 text-red-800" :
+                                "bg-blue-100 text-blue-800"
                         )}
                         value={job.jobStatus}
                         onChange={(e) => updateJob({ ...job, jobStatus: e.target.value as JobStatus })}
@@ -170,9 +170,9 @@ export function Dashboard() {
                       <ChevronDown className={cn(
                         "absolute right-2 h-3 w-3 pointer-events-none",
                         job.jobStatus === 'completed' ? "text-green-800" :
-                        job.jobStatus === 'in_progress' ? "text-yellow-800" :
-                        job.jobStatus === 'canceled' ? "text-red-800" :
-                        "text-blue-800"
+                          job.jobStatus === 'in_progress' ? "text-yellow-800" :
+                            job.jobStatus === 'canceled' ? "text-red-800" :
+                              "text-blue-800"
                       )} />
                     </div>
                   </div>
