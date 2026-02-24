@@ -9,6 +9,8 @@ export function Settings() {
     const { settings, updateSettings } = useAppStore();
     const [companyName, setCompanyName] = useState(settings.companyName);
     const [logo, setLogo] = useState<string | undefined>(settings.logo);
+    const [username, setUsername] = useState(settings.username || '');
+    const [password, setPassword] = useState(settings.password || '');
 
     const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -23,7 +25,7 @@ export function Settings() {
 
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault();
-        updateSettings({ ...settings, companyName, logo });
+        updateSettings({ ...settings, companyName, logo, username, password });
         alert('Configurações salvas com sucesso!');
     };
 
@@ -54,6 +56,24 @@ export function Settings() {
                                 helperText="Este nome substituirá o 'AeroDesk' no cabeçalho dos PDFs."
                                 required
                             />
+
+                            <div className="grid grid-cols-2 gap-4">
+                                <Input
+                                    label="Usuário de Acesso"
+                                    placeholder="Ex: joao_admin"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    required
+                                />
+                                <Input
+                                    label="Senha"
+                                    type="password"
+                                    placeholder="••••••••"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
 
                             <div className="space-y-2">
                                 <label className="block text-sm font-medium text-gray-700">Foto de Perfil ou Logo</label>

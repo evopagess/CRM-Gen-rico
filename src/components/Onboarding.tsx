@@ -9,6 +9,8 @@ export function Onboarding() {
     const { settings, updateSettings } = useAppStore();
     const [companyName, setCompanyName] = useState('');
     const [logo, setLogo] = useState<string | undefined>(undefined);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -27,6 +29,8 @@ export function Onboarding() {
             ...settings,
             companyName: companyName || 'Minha Empresa',
             logo,
+            username,
+            password,
             onboardingCompleted: true
         });
     };
@@ -73,6 +77,24 @@ export function Onboarding() {
                                     onChange={(e) => setCompanyName(e.target.value)}
                                     required
                                 />
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <Input
+                                        label="Usuário"
+                                        placeholder="Seu usuário"
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                        required
+                                    />
+                                    <Input
+                                        label="Senha"
+                                        type="password"
+                                        placeholder="Sua senha"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
+                                </div>
 
                                 <div className="space-y-2">
                                     <label className="block text-sm font-medium text-gray-700">Foto de Perfil ou Logo</label>
