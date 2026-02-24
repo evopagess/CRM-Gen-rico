@@ -12,42 +12,51 @@ import {
     LayoutDashboard
 } from 'lucide-react';
 
-export function Tutorial() {
+interface TutorialProps {
+    onNavigate: (tab: string) => void;
+}
+
+export function Tutorial({ onNavigate }: TutorialProps) {
     const steps = [
         {
             title: '1. Configure seu Perfil',
             description: 'Comece definindo o nome da sua empresa e carregando sua logo. Isso deixará seus orçamentos e recibos com um visual profissional.',
             icon: Settings,
             color: 'bg-blue-100 text-blue-600',
-            action: 'Vá em Configurações'
+            action: 'Configurações',
+            target: 'settings'
         },
         {
             title: '2. Cadastre seus Clientes',
             description: 'Adicione os dados dos seus clientes, incluindo endereço completo. O AeroDesk organizará tudo para você.',
             icon: UserPlus,
             color: 'bg-green-100 text-green-600',
-            action: 'Vá em Clientes'
+            action: 'Ir para Clientes',
+            target: 'clients'
         },
         {
             title: '3. Organize sua Agenda',
             description: 'Agende serviços e acompanhe o status (Agendado, Em andamento, Concluído). As cores ajudam você a bater o olho e saber o que precisa ser feito.',
             icon: Calendar,
             color: 'bg-amber-100 text-amber-600',
-            action: 'Vá em Agenda'
+            action: 'Acessar Agenda',
+            target: 'schedule'
         },
         {
             title: '4. Gere Orçamentos Profissionais',
             description: 'Crie orçamentos detalhados em PDF e envie diretamente para o WhatsApp do seu cliente em segundos.',
             icon: FileText,
             color: 'bg-purple-100 text-purple-600',
-            action: 'Vá em Orçamentos'
+            action: 'Criar Orçamento',
+            target: 'quotes'
         },
         {
             title: '5. Emita Recibos e Receba',
             description: 'Após concluir o serviço e receber o pagamento, o botão de "Gerar Recibo" aparecerá automaticamente para você finalizar o atendimento.',
             icon: ClipboardCheck,
             color: 'bg-emerald-100 text-emerald-600',
-            action: 'No card do serviço na Agenda'
+            action: 'Ver na Agenda',
+            target: 'schedule'
         }
     ];
 
@@ -64,7 +73,7 @@ export function Tutorial() {
 
             <div className="grid gap-6 md:grid-cols-1">
                 {steps.map((step, index) => (
-                    <Card key={index} className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                    <Card key={index} className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer" onClick={() => onNavigate(step.target)}>
                         <div className="flex flex-col md:flex-row">
                             <div className={`p-8 flex items-center justify-center ${step.color} md:w-48 shrink-0`}>
                                 <step.icon size={48} className="group-hover:scale-110 transition-transform duration-300" />
@@ -77,9 +86,15 @@ export function Tutorial() {
                                             {step.description}
                                         </p>
                                     </div>
-                                    <div className="flex items-center text-blue-600 font-semibold group-hover:translate-x-2 transition-transform duration-300">
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            onNavigate(step.target);
+                                        }}
+                                        className="flex items-center text-blue-600 font-semibold group-hover:translate-x-2 transition-transform duration-300 hover:text-blue-700"
+                                    >
                                         {step.action} <ArrowRight size={20} className="ml-2" />
-                                    </div>
+                                    </button>
                                 </div>
                             </CardContent>
                         </div>

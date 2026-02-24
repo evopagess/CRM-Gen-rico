@@ -30,7 +30,7 @@ export default function App() {
       case 'quotes':
         return <Quotes />;
       case 'tutorial':
-        return <Tutorial />;
+        return <Tutorial onNavigate={setActiveTab} />;
       case 'settings':
         return <Settings />;
       default:
