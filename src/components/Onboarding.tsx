@@ -36,7 +36,7 @@ export function Onboarding() {
     };
 
     return (
-        <div className="fixed inset-0 bg-[#050a1f] z-[100] flex items-center justify-center p-4 overflow-hidden">
+        <div className="fixed inset-0 bg-[#050a1f] z-[100] flex items-center justify-center p-4 overflow-y-auto overflow-x-hidden">
             {/* Animated Tech Background Elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse" />
@@ -78,7 +78,7 @@ export function Onboarding() {
                                     required
                                 />
 
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <Input
                                         label="Usuário"
                                         placeholder="Seu usuário"

@@ -22,7 +22,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
   ];
 
   return (
-    <div className="flex h-screen bg-gray-50 flex-col md:flex-row">
+    <div className="flex h-[100dvh] w-full overflow-hidden bg-gray-50 flex-col md:flex-row">
       {/* Mobile Header */}
       <header className="md:hidden bg-blue-600 text-white p-4 flex items-center justify-between shadow-md z-10">
         <div className="flex items-center gap-2">
@@ -83,7 +83,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8">
+      <main className="flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-8 pb-24 md:pb-8 w-full">
         <div className="max-w-5xl mx-auto">
           {children}
         </div>

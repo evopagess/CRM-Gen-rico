@@ -57,7 +57,7 @@ export function Settings() {
 
                             <div className="space-y-2">
                                 <label className="block text-sm font-medium text-gray-700">Foto de Perfil ou Logo</label>
-                                <div className="flex items-center gap-6">
+                                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 text-center sm:text-left">
                                     <div className="h-24 w-24 rounded-2xl bg-gray-50 border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden shrink-0 shadow-inner">
                                         {logo ? (
                                             <img src={logo} alt="Logo" className="h-full w-full object-cover" />
