@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Users, FileText, Home, Menu, Settings } from 'lucide-react';
+import { Calendar, Users, FileText, Home, Menu, Settings, HelpCircle } from 'lucide-react';
 import { cn } from '../utils/cn';
 
 import { useAppStore } from '../context/AppContext';
@@ -17,6 +17,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
     { id: 'clients', label: 'Clientes', icon: Users },
     { id: 'schedule', label: 'Agenda', icon: Calendar },
     { id: 'quotes', label: 'Orçamentos', icon: FileText },
+    { id: 'tutorial', label: 'Passo a Passo', icon: HelpCircle },
     { id: 'settings', label: 'Configurações', icon: Settings },
   ];
 

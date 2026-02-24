@@ -12,6 +12,7 @@ import { Clients } from './pages/Clients';
 import { Quotes } from './pages/Quotes';
 import { Settings } from './pages/Settings';
 import { Onboarding } from './components/Onboarding';
+import { Tutorial } from './pages/Tutorial';
 import { useAppStore } from './context/AppContext';
 
 export default function App() {
@@ -28,6 +29,8 @@ export default function App() {
         return <Clients />;
       case 'quotes':
         return <Quotes />;
+      case 'tutorial':
+        return <Tutorial />;
       case 'settings':
         return <Settings />;
       default:
