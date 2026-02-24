@@ -150,7 +150,7 @@ export function Clients() {
               <p className="text-sm mt-1">Adicione um novo cliente para começar.</p>
             </div>
           ) : (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {filteredClients.map(client => (
                 <div key={client.id} className="border border-gray-200 rounded-lg p-4 hover:border-blue-500 transition-colors group relative">
                   <div className="flex items-start justify-between">
@@ -174,20 +174,20 @@ export function Clients() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-col gap-2 ml-2">
+                    <div className="flex flex-row sm:flex-col gap-2 ml-2 sm:ml-4">
                       <button
                         onClick={() => handleOpenEditModal(client)}
-                        className="p-1.5 rounded-md hover:bg-gray-100 text-gray-400 hover:text-blue-600 transition-colors"
+                        className="p-2 sm:p-1.5 rounded-lg sm:rounded-md bg-gray-50 sm:bg-transparent border sm:border-0 border-gray-100 sm:border-none hover:bg-gray-100 text-gray-500 hover:text-blue-600 transition-colors"
                         title="Editar"
                       >
-                        <Edit2 size={16} />
+                        <Edit2 size={18} />
                       </button>
                       <button
                         onClick={() => handleConfirmDelete(client.id)}
-                        className="p-1.5 rounded-md hover:bg-gray-100 text-gray-400 hover:text-red-600 transition-colors"
+                        className="p-2 sm:p-1.5 rounded-lg sm:rounded-md bg-gray-50 sm:bg-transparent border sm:border-0 border-gray-100 sm:border-none hover:bg-gray-100 text-gray-500 hover:text-red-600 transition-colors"
                         title="Excluir"
                       >
-                        <Trash2 size={16} />
+                        <Trash2 size={18} />
                       </button>
                     </div>
                   </div>

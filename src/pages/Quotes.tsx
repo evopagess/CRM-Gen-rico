@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Quote, QuoteItem } from '../types';
 import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { cn } from '../utils/cn';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
@@ -204,7 +205,7 @@ export function Quotes() {
         </Button>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {quotes.length === 0 ? (
           <div className="col-span-full text-center py-12 text-gray-500 bg-white rounded-xl border border-gray-200">
             <FileText className="mx-auto h-12 w-12 text-gray-300 mb-4" />
@@ -260,17 +261,21 @@ export function Quotes() {
                       variant="outline"
                       size="sm"
                       onClick={() => updateQuote({ ...quote, status: quote.status === 'active' ? 'completed' : 'active' })}
-                      className={quote.status === 'active' ? 'text-green-600 border-green-200 hover:bg-green-50' : 'text-blue-600 border-blue-200 hover:bg-blue-50'}
+                      className={cn(
+                        "h-9 px-3",
+                        quote.status === 'active' ? 'text-green-600 border-green-200 hover:bg-green-50' : 'text-blue-600 border-blue-200 hover:bg-blue-50'
+                      )}
                     >
-                      {quote.status === 'active' ? 'Marcar Concluído' : 'Reativar'}
+                      {quote.status === 'active' ? 'Concluir' : 'Reativar'}
                     </Button>
                   </div>
                   <Button
                     variant="primary"
                     size="sm"
+                    className="h-9 px-3"
                     onClick={() => generatePDF(quote)}
                   >
-                    <Download className="mr-2 h-4 w-4" /> Gerar PDF
+                    <Download className="mr-1 sm:mr-2 h-4 w-4" /> <span className="sm:inline">PDF</span>
                   </Button>
                 </div>
               </Card>
@@ -321,50 +326,44 @@ export function Quotes() {
 
             <div className="space-y-3">
               {newQuote.items.map((item, index) => (
-                <div key={item.id} className="flex flex-col sm:flex-row gap-2 items-start sm:items-end bg-gray-50 p-3 rounded-lg border border-gray-200">
-                  <div className="w-full sm:flex-1">
+                <div key={item.id} className="relative flex flex-col gap-3 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                  <div className="w-full">
                     <Input
-                      label={index === 0 ? "Descrição" : undefined}
+                      label="Descrição"
                       placeholder="Ex: Limpeza de Ar Condicionado"
                       value={item.description}
                       onChange={e => handleItemChange(item.id, 'description', e.target.value)}
                       required
                     />
                   </div>
-                  <div className="flex gap-2 w-full sm:w-auto">
-                    <div className="w-20">
-                      <Input
-                        label={index === 0 ? "Qtd" : undefined}
-                        type="number"
-                        min="1"
-                        value={item.quantity}
-                        onChange={e => handleItemChange(item.id, 'quantity', Number(e.target.value))}
-                        required
-                      />
-                    </div>
-                    <div className="w-32">
-                      <Input
-                        label={index === 0 ? "Valor Unit." : undefined}
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value={item.unitPrice}
-                        onChange={e => handleItemChange(item.id, 'unitPrice', Number(e.target.value))}
-                        required
-                      />
-                    </div>
-                    <div className={index === 0 ? "pt-6" : ""}>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        className="text-red-500 hover:text-red-700 hover:bg-red-50 px-2"
-                        onClick={() => handleRemoveItem(item.id)}
-                        disabled={newQuote.items.length === 1}
-                      >
-                        <Trash2 className="h-5 w-5" />
-                      </Button>
-                    </div>
+                  <div className="grid grid-cols-2 gap-3 items-end">
+                    <Input
+                      label="Quantidade"
+                      type="number"
+                      min="1"
+                      value={item.quantity}
+                      onChange={e => handleItemChange(item.id, 'quantity', Number(e.target.value))}
+                      required
+                    />
+                    <Input
+                      label="Valor Unitário (R$)"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={item.unitPrice}
+                      onChange={e => handleItemChange(item.id, 'unitPrice', Number(e.target.value))}
+                      required
+                    />
                   </div>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    className="absolute -top-2 -right-2 bg-white border border-red-100 text-red-500 hover:text-red-700 hover:bg-red-50 p-1 h-8 w-8 rounded-full shadow-sm"
+                    onClick={() => handleRemoveItem(item.id)}
+                    disabled={newQuote.items.length === 1}
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
                 </div>
               ))}
             </div>

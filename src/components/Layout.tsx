@@ -90,7 +90,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
       </main>
 
       {/* Mobile Bottom Nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around p-2 pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-20">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center h-20 p-2 pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-20">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.id;
@@ -99,12 +99,12 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
               key={item.id}
               onClick={() => setActiveTab(item.id)}
               className={cn(
-                "flex flex-col items-center p-2 rounded-lg min-w-[64px] transition-colors",
-                isActive ? "text-blue-600" : "text-gray-500"
+                "flex flex-col items-center justify-center flex-1 h-full rounded-lg transition-colors",
+                isActive ? "text-blue-600 bg-blue-50/50" : "text-gray-500"
               )}
             >
-              <Icon size={24} className={cn("mb-1", isActive ? "text-blue-600" : "text-gray-400")} />
-              <span className="text-[10px] font-medium">{item.label}</span>
+              <Icon size={22} className={cn(isActive ? "text-blue-600" : "text-gray-400")} />
+              <span className="text-[9px] font-bold mt-1 uppercase tracking-wider">{item.label.split(' ')[0]}</span>
             </button>
           );
         })}

@@ -252,33 +252,35 @@ export function Schedule() {
               <Card key={job.id} className="overflow-hidden">
                 <div className="flex flex-col md:flex-row">
                   <div className={cn(
-                    "p-4 md:w-48 flex flex-row md:flex-col items-center md:items-start justify-between md:justify-center border-b md:border-b-0 md:border-r transition-colors",
+                    "p-4 sm:w-48 flex flex-row sm:flex-col items-center sm:items-start justify-between sm:justify-center border-b sm:border-b-0 sm:border-r transition-colors",
                     job.jobStatus === 'completed' ? "bg-green-50 border-green-100" :
                       job.jobStatus === 'in_progress' ? "bg-yellow-50 border-yellow-100" :
                         job.jobStatus === 'canceled' ? "bg-red-50 border-red-100" :
                           "bg-blue-50 border-blue-100"
                   )}>
-                    <div className="text-center md:text-left">
+                    <div className="flex sm:flex-col items-center sm:items-start gap-3 sm:gap-1">
+                      <div className="text-center sm:text-left">
+                        <p className={cn(
+                          "text-[10px] sm:text-sm font-semibold uppercase tracking-wider",
+                          job.jobStatus === 'completed' ? "text-green-800" :
+                            job.jobStatus === 'in_progress' ? "text-yellow-800" :
+                              job.jobStatus === 'canceled' ? "text-red-800" :
+                                "text-blue-800"
+                        )}>
+                          {format(jobDate, "MMM", { locale: ptBR })}
+                        </p>
+                        <p className={cn(
+                          "text-2xl sm:text-3xl font-bold leading-none sm:my-1",
+                          job.jobStatus === 'completed' ? "text-green-900" :
+                            job.jobStatus === 'in_progress' ? "text-yellow-900" :
+                              job.jobStatus === 'canceled' ? "text-red-900" :
+                                "text-blue-900"
+                        )}>
+                          {format(jobDate, "dd")}
+                        </p>
+                      </div>
                       <p className={cn(
-                        "text-sm font-semibold uppercase tracking-wider",
-                        job.jobStatus === 'completed' ? "text-green-800" :
-                          job.jobStatus === 'in_progress' ? "text-yellow-800" :
-                            job.jobStatus === 'canceled' ? "text-red-800" :
-                              "text-blue-800"
-                      )}>
-                        {format(jobDate, "MMM", { locale: ptBR })}
-                      </p>
-                      <p className={cn(
-                        "text-3xl font-bold leading-none my-1",
-                        job.jobStatus === 'completed' ? "text-green-900" :
-                          job.jobStatus === 'in_progress' ? "text-yellow-900" :
-                            job.jobStatus === 'canceled' ? "text-red-900" :
-                              "text-blue-900"
-                      )}>
-                        {format(jobDate, "dd")}
-                      </p>
-                      <p className={cn(
-                        "text-xs font-medium",
+                        "hidden sm:block text-xs font-medium",
                         job.jobStatus === 'completed' ? "text-green-700" :
                           job.jobStatus === 'in_progress' ? "text-yellow-700" :
                             job.jobStatus === 'canceled' ? "text-red-700" :
@@ -288,21 +290,21 @@ export function Schedule() {
                       </p>
                     </div>
                     <div className={cn(
-                      "flex items-center font-medium md:mt-4 bg-white px-3 py-1.5 rounded-full shadow-sm",
+                      "flex items-center font-bold text-xs sm:text-sm sm:mt-4 bg-white px-3 py-1.5 rounded-full shadow-sm",
                       job.jobStatus === 'completed' ? "text-green-800" :
                         job.jobStatus === 'in_progress' ? "text-yellow-800" :
                           job.jobStatus === 'canceled' ? "text-red-800" :
                             "text-blue-800"
                     )}>
-                      <Clock className="mr-1.5 h-4 w-4" />
+                      <Clock className="mr-1.5 h-3.5 w-3.5 sm:h-4 sm:w-4" />
                       {format(jobDate, "HH:mm")}
                     </div>
                   </div>
 
-                  <div className="p-4 md:p-6 flex-1 flex flex-col justify-between">
+                  <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between">
                     <div>
-                      <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
-                        <h3 className="text-lg font-bold text-gray-900">{job.description}</h3>
+                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
+                        <h3 className="text-lg font-bold text-gray-900 leading-tight">{job.description}</h3>
                         <div className="flex gap-2">
                           <Badge variant={
                             job.type === 'installation' ? 'info' :
@@ -341,11 +343,13 @@ export function Schedule() {
 
                       {client && (
                         <div className="space-y-2 mt-4">
-                          <div className="flex items-center text-sm text-gray-600">
-                            <User className="mr-2 h-4 w-4 text-gray-400" />
-                            <span className="font-medium">{client.name}</span>
-                            <span className="mx-2 text-gray-300">•</span>
-                            <span>{client.phone}</span>
+                          <div className="flex flex-col sm:flex-row sm:items-center text-sm text-gray-600 gap-1 sm:gap-2">
+                            <div className="flex items-center">
+                              <User className="mr-2 h-4 w-4 text-gray-400" />
+                              <span className="font-semibold">{client.name}</span>
+                            </div>
+                            <span className="hidden sm:inline text-gray-300">•</span>
+                            <span className="ml-6 sm:ml-0">{client.phone}</span>
                           </div>
                           <div className="flex items-start text-sm text-gray-600">
                             <MapPin className="mr-2 h-4 w-4 text-gray-400 mt-0.5 shrink-0" />
@@ -360,20 +364,20 @@ export function Schedule() {
                     </div>
 
                     <div className="mt-6 pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-gray-500">Valor:</span>
-                        <span className="text-lg font-bold text-gray-900">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
+                        <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Valor do Serviço:</span>
+                        <span className="text-xl font-black text-gray-900">
                           {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(job.price)}
                         </span>
                       </div>
 
-                      <div className="flex gap-2">
+                      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                         {job.jobStatus === 'completed' && job.paymentStatus === 'paid' && (
                           <Button
                             variant="outline"
                             size="sm"
                             onClick={() => generateReceiptPDF(job)}
-                            className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                            className="w-full sm:w-auto text-blue-600 border-blue-200 hover:bg-blue-50 h-11 sm:h-9"
                           >
                             <FileText className="mr-2 h-4 w-4" /> Gerar Recibo
                           </Button>
@@ -382,7 +386,10 @@ export function Schedule() {
                           variant={job.paymentStatus === 'paid' ? 'outline' : 'primary'}
                           size="sm"
                           onClick={() => togglePaymentStatus(job)}
-                          className={job.paymentStatus === 'paid' ? 'text-green-600 border-green-200 hover:bg-green-50' : ''}
+                          className={cn(
+                            "w-full sm:w-auto h-11 sm:h-9",
+                            job.paymentStatus === 'paid' ? 'text-green-600 border-green-200 hover:bg-green-50' : ''
+                          )}
                         >
                           {job.paymentStatus === 'paid' ? (
                             <><CheckCircle className="mr-2 h-4 w-4" /> Pago</>

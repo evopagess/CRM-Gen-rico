@@ -75,15 +75,15 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         </Card>
       )}
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gray-500">Serviços Hoje</CardTitle>
             <Calendar className="h-4 w-4 text-blue-600" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-gray-900">{todayJobs.length}</div>
-            <p className="text-xs text-gray-500 mt-1">
+          <CardContent className="p-4 sm:p-6">
+            <div className="text-xl sm:text-2xl font-bold text-gray-900">{todayJobs.length}</div>
+            <p className="text-[10px] sm:text-xs text-gray-500 mt-1 truncate">
               {todayJobs.filter(j => j.jobStatus === 'completed').length} concluídos
             </p>
           </CardContent>
@@ -94,12 +94,12 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             <CardTitle className="text-sm font-medium text-gray-500">A Receber</CardTitle>
             <Clock className="h-4 w-4 text-amber-500" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-gray-900">
-              {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalPending)}
+          <CardContent className="p-4 sm:p-6">
+            <div className="text-xl sm:text-2xl font-bold text-gray-900 truncate">
+              {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(totalPending)}
             </div>
-            <p className="text-xs text-gray-500 mt-1">
-              {pendingPayments.length} serviços pendentes
+            <p className="text-[10px] sm:text-xs text-gray-500 mt-1 truncate">
+              {pendingPayments.length} pendentes
             </p>
           </CardContent>
         </Card>
@@ -109,9 +109,9 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             <CardTitle className="text-sm font-medium text-gray-500">Recebido Hoje</CardTitle>
             <DollarSign className="h-4 w-4 text-green-600" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-gray-900">
-              {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalEarnedToday)}
+          <CardContent className="p-4 sm:p-6">
+            <div className="text-xl sm:text-2xl font-bold text-gray-900 truncate">
+              {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(totalEarnedToday)}
             </div>
           </CardContent>
         </Card>
@@ -121,11 +121,11 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             <CardTitle className="text-sm font-medium text-gray-500">Orçamentos Ativos</CardTitle>
             <CheckCircle className="h-4 w-4 text-purple-600" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-gray-900">
+          <CardContent className="p-4 sm:p-6">
+            <div className="text-xl sm:text-2xl font-bold text-gray-900">
               {quotes.filter(q => q.status === 'active').length}
             </div>
-            <p className="text-xs text-gray-500 mt-1">Aguardando aprovação</p>
+            <p className="text-[10px] sm:text-xs text-gray-500 mt-1 truncate">Orçamentos Ativos</p>
           </CardContent>
         </Card>
       </div>

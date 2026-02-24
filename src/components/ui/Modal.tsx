@@ -25,14 +25,14 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-      <div 
-        className={cn("bg-white rounded-xl shadow-lg w-full max-w-md max-h-[90vh] flex flex-col overflow-hidden", className)}
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-0 sm:p-4 backdrop-blur-sm">
+      <div
+        className={cn("bg-white rounded-t-3xl sm:rounded-xl shadow-xl w-full sm:max-w-md max-h-[95vh] sm:max-h-[90vh] flex flex-col overflow-hidden", className)}
         onClick={e => e.stopPropagation()}
       >
         <div className="flex items-center justify-between p-4 border-b border-gray-100">
           <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
-          <button 
+          <button
             onClick={onClose}
             className="p-1 rounded-full hover:bg-gray-100 text-gray-500 transition-colors"
           >
