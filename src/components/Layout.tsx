@@ -30,8 +30,8 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
               <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[3px]" />
             </div>
           ) : (
-            <div className="bg-white text-blue-600 p-1.5 rounded-md">
-              <Menu size={20} />
+            <div className="h-8 w-8 rounded-md bg-white overflow-hidden">
+              <img src="/logo.png" alt="AeroDesk Logo" className="h-full w-full object-contain" />
             </div>
           )}
           <div>
@@ -49,8 +49,8 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
               <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[5px]" />
             </div>
           ) : (
-            <div className="bg-blue-600 text-white p-2 rounded-lg">
-              <Menu size={24} />
+            <div className="h-10 w-10 rounded-lg bg-white border border-gray-100 overflow-hidden">
+              <img src="/logo.png" alt="AeroDesk Logo" className="h-full w-full object-contain" />
             </div>
           )}
           <div className="min-w-0">
