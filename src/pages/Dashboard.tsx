@@ -8,7 +8,11 @@ import { Calendar, DollarSign, Clock, CheckCircle, ArrowRight, UserPlus, FileTex
 import { JobStatus } from '../types';
 import { cn } from '../utils/cn';
 
-export function Dashboard() {
+interface DashboardProps {
+  onNavigate: (tab: string) => void;
+}
+
+export function Dashboard({ onNavigate }: DashboardProps) {
   const { jobs, quotes, clients, updateJob } = useAppStore();
 
   const todayJobs = jobs.filter(job => isToday(parseISO(job.date)));
@@ -119,7 +123,7 @@ export function Dashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-gray-900">
-              {quotes.filter(q => q.status === 'sent').length}
+              {quotes.filter(q => q.status === 'active').length}
             </div>
             <p className="text-xs text-gray-500 mt-1">Aguardando aprovação</p>
           </CardContent>
@@ -140,7 +144,11 @@ export function Dashboard() {
             ) : (
               <div className="space-y-4">
                 {todayJobs.map(job => (
-                  <div key={job.id} className="flex items-center justify-between border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                  <div
+                    key={job.id}
+                    className="flex items-center justify-between border-b border-gray-100 pb-4 last:border-0 last:pb-0 hover:bg-gray-50 -mx-2 px-2 rounded-lg cursor-pointer transition-colors"
+                    onClick={() => onNavigate('schedule')}
+                  >
                     <div>
                       <p className="font-medium text-sm text-gray-900">{job.description}</p>
                       <p className="text-xs text-gray-500 mt-1">
@@ -150,7 +158,7 @@ export function Dashboard() {
                         }
                       </p>
                     </div>
-                    <div className="relative inline-flex items-center">
+                    <div className="relative inline-flex items-center" onClick={(e) => e.stopPropagation()}>
                       <select
                         className={cn(
                           "appearance-none pl-2.5 pr-7 py-0.5 rounded-full text-xs font-semibold cursor-pointer outline-none focus:ring-2 focus:ring-blue-500 border-0",
@@ -195,7 +203,11 @@ export function Dashboard() {
             ) : (
               <div className="space-y-4">
                 {pendingPayments.slice(0, 5).map(job => (
-                  <div key={job.id} className="flex items-center justify-between border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                  <div
+                    key={job.id}
+                    className="flex items-center justify-between border-b border-gray-100 pb-4 last:border-0 last:pb-0 hover:bg-gray-50 -mx-2 px-2 rounded-lg cursor-pointer transition-colors"
+                    onClick={() => onNavigate('schedule')}
+                  >
                     <div>
                       <p className="font-medium text-sm text-gray-900">{job.description}</p>
                       <p className="text-xs text-gray-500 mt-1">
