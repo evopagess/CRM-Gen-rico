@@ -3,15 +3,27 @@ import { useAppStore } from '../context/AppContext';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card';
-import { Save, Building2 } from 'lucide-react';
+import { Save, Building2, Upload } from 'lucide-react';
 
 export function Settings() {
     const { settings, updateSettings } = useAppStore();
     const [companyName, setCompanyName] = useState(settings.companyName);
+    const [logo, setLogo] = useState<string | undefined>(settings.logo);
+
+    const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setLogo(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault();
-        updateSettings({ ...settings, companyName });
+        updateSettings({ ...settings, companyName, logo });
         alert('Configurações salvas com sucesso!');
     };
 
@@ -43,6 +55,30 @@ export function Settings() {
                                 required
                             />
 
+                            <div className="space-y-2">
+                                <label className="block text-sm font-medium text-gray-700">Foto de Perfil ou Logo</label>
+                                <div className="flex items-center gap-6">
+                                    <div className="h-24 w-24 rounded-2xl bg-gray-50 border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden shrink-0 shadow-inner">
+                                        {logo ? (
+                                            <img src={logo} alt="Logo" className="h-full w-full object-cover" />
+                                        ) : (
+                                            <Building2 className="h-10 w-10 text-gray-300" />
+                                        )}
+                                    </div>
+                                    <div className="flex-1 space-y-3">
+                                        <label className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none">
+                                            <span className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+                                                <Upload className="mr-2 h-4 w-4" /> Alterar Imagem
+                                            </span>
+                                            <input type="file" className="sr-only" accept="image/*" onChange={handleLogoChange} />
+                                        </label>
+                                        <p className="text-xs text-gray-500 leading-relaxed">
+                                            Recomendado: 400x400px. <br />
+                                            Sua logo aparecerá nos orçamentos e recibos gerados.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                             <div className="pt-4 flex justify-end">
                                 <Button type="submit">
                                     <Save className="mr-2 h-4 w-4" /> Salvar Alterações

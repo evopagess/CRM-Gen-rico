@@ -19,7 +19,8 @@ const defaultState: AppState = {
   jobs: [],
   quotes: [],
   settings: {
-    companyName: 'SmartAir'
+    companyName: 'SmartAir',
+    onboardingCompleted: false
   }
 };
 
@@ -34,7 +35,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         return {
           ...defaultState,
           ...parsed,
-          settings: parsed.settings || defaultState.settings
+          settings: {
+            ...defaultState.settings,
+            ...(parsed.settings || {})
+          }
         };
       } catch (e) {
         console.error('Failed to parse state from local storage', e);

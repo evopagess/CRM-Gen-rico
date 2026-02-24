@@ -11,8 +11,11 @@ import { Schedule } from './pages/Schedule';
 import { Clients } from './pages/Clients';
 import { Quotes } from './pages/Quotes';
 import { Settings } from './pages/Settings';
+import { Onboarding } from './components/Onboarding';
+import { useAppStore } from './context/AppContext';
 
 export default function App() {
+  const { settings } = useAppStore();
   const [activeTab, setActiveTab] = useState('dashboard');
 
   const renderContent = () => {
@@ -33,11 +36,12 @@ export default function App() {
   };
 
   return (
-    <AppProvider>
+    <>
+      {!settings.onboardingCompleted && <Onboarding />}
       <Layout activeTab={activeTab} setActiveTab={setActiveTab}>
         {renderContent()}
       </Layout>
-    </AppProvider>
+    </>
   );
 }
 

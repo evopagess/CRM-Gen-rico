@@ -78,10 +78,24 @@ export function Schedule() {
       console.log('Generating Receipt PDF for job:', job.id);
       const doc = new jsPDF();
 
-      // Header
-      doc.setFontSize(20);
-      doc.setTextColor(37, 99, 235); // blue-600
-      doc.text(settings.companyName, 14, 22);
+      // Logo and Header
+      if (settings.logo) {
+        try {
+          doc.addImage(settings.logo, 'PNG', 14, 12, 12, 12);
+          doc.setFontSize(20);
+          doc.setTextColor(37, 99, 235);
+          doc.text(settings.companyName, 30, 22);
+        } catch (e) {
+          console.error('Error adding logo to PDF', e);
+          doc.setFontSize(20);
+          doc.setTextColor(37, 99, 235);
+          doc.text(settings.companyName, 14, 22);
+        }
+      } else {
+        doc.setFontSize(20);
+        doc.setTextColor(37, 99, 235); // blue-600
+        doc.text(settings.companyName, 14, 22);
+      }
 
       doc.setFontSize(10);
       doc.setTextColor(100);

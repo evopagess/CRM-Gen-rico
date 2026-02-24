@@ -2,6 +2,8 @@ import React from 'react';
 import { Calendar, Users, FileText, Home, Menu, Settings } from 'lucide-react';
 import { cn } from '../utils/cn';
 
+import { useAppStore } from '../context/AppContext';
+
 interface LayoutProps {
   children: React.ReactNode;
   activeTab: string;
@@ -9,6 +11,7 @@ interface LayoutProps {
 }
 
 export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
+  const { settings } = useAppStore();
   const navItems = [
     { id: 'dashboard', label: 'Início', icon: Home },
     { id: 'schedule', label: 'Agenda', icon: Calendar },
@@ -22,20 +25,38 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
       {/* Mobile Header */}
       <header className="md:hidden bg-blue-600 text-white p-4 flex items-center justify-between shadow-md z-10">
         <div className="flex items-center gap-2">
-          <div className="bg-white text-blue-600 p-1.5 rounded-md">
-            <Menu size={20} />
+          {settings.logo ? (
+            <div className="h-8 w-8 rounded-md bg-white overflow-hidden p-0.5">
+              <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[3px]" />
+            </div>
+          ) : (
+            <div className="bg-white text-blue-600 p-1.5 rounded-md">
+              <Menu size={20} />
+            </div>
+          )}
+          <div>
+            <h1 className="font-bold text-lg tracking-tight leading-tight">SmartAir</h1>
+            <p className="text-[10px] text-blue-100 font-medium truncate max-w-[120px]">{settings.companyName}</p>
           </div>
-          <h1 className="font-bold text-lg tracking-tight">SmartAir</h1>
         </div>
       </header>
 
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex w-64 flex-col bg-white border-r border-gray-200 shadow-sm">
         <div className="p-6 border-b border-gray-100 flex items-center gap-3">
-          <div className="bg-blue-600 text-white p-2 rounded-lg">
-            <Menu size={24} />
+          {settings.logo ? (
+            <div className="h-10 w-10 rounded-lg bg-blue-50 border border-blue-100 overflow-hidden p-0.5">
+              <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[5px]" />
+            </div>
+          ) : (
+            <div className="bg-blue-600 text-white p-2 rounded-lg">
+              <Menu size={24} />
+            </div>
+          )}
+          <div className="min-w-0">
+            <h1 className="font-bold text-xl text-gray-900 tracking-tight leading-tight">SmartAir</h1>
+            <p className="text-xs text-gray-500 font-medium truncate">{settings.companyName}</p>
           </div>
-          <h1 className="font-bold text-xl text-gray-900 tracking-tight">SmartAir</h1>
         </div>
         <nav className="flex-1 p-4 space-y-1">
           {navItems.map((item) => {
