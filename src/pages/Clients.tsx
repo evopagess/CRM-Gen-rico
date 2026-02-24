@@ -15,7 +15,17 @@ export function Clients() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [clientToDelete, setClientToDelete] = useState<string | null>(null);
   const [editingClient, setEditingClient] = useState<Client | null>(null);
-  const [formData, setFormData] = useState({ name: '', phone: '', address: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    street: '',
+    number: '',
+    complement: '',
+    neighborhood: '',
+    city: '',
+    state: '',
+    zipCode: ''
+  });
 
   const filteredClients = clients.filter(c =>
     c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -24,13 +34,33 @@ export function Clients() {
 
   const handleOpenAddModal = () => {
     setEditingClient(null);
-    setFormData({ name: '', phone: '', address: '' });
+    setFormData({
+      name: '',
+      phone: '',
+      street: '',
+      number: '',
+      complement: '',
+      neighborhood: '',
+      city: '',
+      state: '',
+      zipCode: ''
+    });
     setIsModalOpen(true);
   };
 
   const handleOpenEditModal = (client: Client) => {
     setEditingClient(client);
-    setFormData({ name: client.name, phone: client.phone, address: client.address || '' });
+    setFormData({
+      name: client.name,
+      phone: client.phone,
+      street: client.street || '',
+      number: client.number || '',
+      complement: client.complement || '',
+      neighborhood: client.neighborhood || '',
+      city: client.city || '',
+      state: client.state || '',
+      zipCode: client.zipCode || ''
+    });
     setIsModalOpen(true);
   };
 
@@ -38,24 +68,42 @@ export function Clients() {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
 
+    const clientData = {
+      name: formData.name,
+      phone: formData.phone,
+      street: formData.street,
+      number: formData.number,
+      complement: formData.complement,
+      neighborhood: formData.neighborhood,
+      city: formData.city,
+      state: formData.state,
+      zipCode: formData.zipCode,
+    };
+
     if (editingClient) {
       updateClient({
         ...editingClient,
-        name: formData.name,
-        phone: formData.phone,
-        address: formData.address,
+        ...clientData
       });
     } else {
       addClient({
         id: uuidv4(),
-        name: formData.name,
-        phone: formData.phone,
-        address: formData.address,
+        ...clientData,
         createdAt: new Date().toISOString()
       });
     }
 
-    setFormData({ name: '', phone: '', address: '' });
+    setFormData({
+      name: '',
+      phone: '',
+      street: '',
+      number: '',
+      complement: '',
+      neighborhood: '',
+      city: '',
+      state: '',
+      zipCode: ''
+    });
     setIsModalOpen(false);
     setEditingClient(null);
   };
@@ -113,12 +161,17 @@ export function Clients() {
                           <Phone className="mr-2 h-3.5 w-3.5" />
                           {client.phone}
                         </div>
-                        {client.address && (
-                          <div className="flex items-start text-sm text-gray-500">
-                            <MapPin className="mr-2 h-3.5 w-3.5 mt-0.5 shrink-0" />
-                            <span className="line-clamp-2">{client.address}</span>
-                          </div>
-                        )}
+                        <div className="flex items-start text-sm text-gray-500">
+                          <MapPin className="mr-2 h-3.5 w-3.5 mt-0.5 shrink-0" />
+                          <span className="line-clamp-2">
+                            {client.street}, {client.number}
+                            {client.complement && ` - ${client.complement}`}
+                            <br />
+                            {client.neighborhood}, {client.city} - {client.state}
+                            <br />
+                            CEP: {client.zipCode}
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div className="flex flex-col gap-2 ml-2">
@@ -167,13 +220,62 @@ export function Clients() {
             onChange={e => setFormData({ ...formData, phone: e.target.value })}
             required
           />
-          <Input
-            label="Endereço"
-            placeholder="Ex: Rua das Flores, 123 - Centro"
-            helperText="Opcional. Útil para visitas de manutenção."
-            value={formData.address}
-            onChange={e => setFormData({ ...formData, address: e.target.value })}
-          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Input
+              label="Rua / Logradouro"
+              placeholder="Ex: Rua das Flores"
+              value={formData.street}
+              onChange={e => setFormData({ ...formData, street: e.target.value })}
+              required
+            />
+            <div className="grid grid-cols-2 gap-2">
+              <Input
+                label="Número"
+                placeholder="Ex: 123"
+                value={formData.number}
+                onChange={e => setFormData({ ...formData, number: e.target.value })}
+                required
+              />
+              <Input
+                label="CEP"
+                placeholder="Ex: 01234-567"
+                value={formData.zipCode}
+                onChange={e => setFormData({ ...formData, zipCode: e.target.value })}
+                required
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Input
+              label="Bairro"
+              placeholder="Ex: Centro"
+              value={formData.neighborhood}
+              onChange={e => setFormData({ ...formData, neighborhood: e.target.value })}
+              required
+            />
+            <Input
+              label="Complemento"
+              placeholder="Ex: Apto 42"
+              value={formData.complement}
+              onChange={e => setFormData({ ...formData, complement: e.target.value })}
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Input
+              label="Cidade"
+              placeholder="Ex: São Paulo"
+              value={formData.city}
+              onChange={e => setFormData({ ...formData, city: e.target.value })}
+              required
+            />
+            <Input
+              label="Estado (UF)"
+              placeholder="Ex: SP"
+              value={formData.state}
+              onChange={e => setFormData({ ...formData, state: e.target.value })}
+              required
+            />
+          </div>
           <div className="flex justify-end gap-2 pt-4">
             <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)}>Cancelar</Button>
             <Button type="submit">{editingClient ? "Salvar Alterações" : "Salvar Cliente"}</Button>

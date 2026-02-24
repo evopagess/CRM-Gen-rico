@@ -112,10 +112,15 @@ export function Quotes() {
       doc.setFontSize(10);
       doc.text(client.name, 120, 52);
       doc.text(client.phone, 120, 57);
-      if (client.address) {
-        const splitAddress = doc.splitTextToSize(client.address, 70);
-        doc.text(splitAddress, 120, 62);
-      }
+      const fullAddress = [
+        `${client.street}, ${client.number}`,
+        client.complement,
+        `${client.neighborhood}, ${client.city} - ${client.state}`,
+        `CEP: ${client.zipCode}`
+      ].filter(Boolean).join('\n');
+
+      const splitAddress = doc.splitTextToSize(fullAddress, 70);
+      doc.text(splitAddress, 120, 62);
 
       // Items Table
       const tableColumn = ["Descrição", "Qtd", "Valor Unit.", "Total"];

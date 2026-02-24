@@ -6,7 +6,13 @@ export interface Client {
   id: string;
   name: string;
   phone: string;
-  address: string;
+  street: string;
+  number: string;
+  complement?: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+  zipCode: string;
   createdAt: string;
 }
 

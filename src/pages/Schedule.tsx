@@ -106,10 +106,16 @@ export function Schedule() {
       doc.setFontSize(10);
       doc.text(client.name, 120, 52);
       doc.text(client.phone, 120, 57);
-      if (client.address) {
-        const splitAddress = doc.splitTextToSize(client.address, 70);
-        doc.text(splitAddress, 120, 62);
-      }
+
+      const fullAddress = [
+        `${client.street}, ${client.number}`,
+        client.complement,
+        `${client.neighborhood}, ${client.city} - ${client.state}`,
+        `CEP: ${client.zipCode}`
+      ].filter(Boolean).join('\n');
+
+      const splitAddress = doc.splitTextToSize(fullAddress, 70);
+      doc.text(splitAddress, 120, 62);
 
       // Items Table
       const tableColumn = ["Descrição do Serviço", "Valor"];
@@ -231,19 +237,49 @@ export function Schedule() {
             return (
               <Card key={job.id} className="overflow-hidden">
                 <div className="flex flex-col md:flex-row">
-                  <div className="bg-blue-50 p-4 md:w-48 flex flex-row md:flex-col items-center md:items-start justify-between md:justify-center border-b md:border-b-0 md:border-r border-blue-100">
+                  <div className={cn(
+                    "p-4 md:w-48 flex flex-row md:flex-col items-center md:items-start justify-between md:justify-center border-b md:border-b-0 md:border-r transition-colors",
+                    job.jobStatus === 'completed' ? "bg-green-50 border-green-100" :
+                      job.jobStatus === 'in_progress' ? "bg-yellow-50 border-yellow-100" :
+                        job.jobStatus === 'canceled' ? "bg-red-50 border-red-100" :
+                          "bg-blue-50 border-blue-100"
+                  )}>
                     <div className="text-center md:text-left">
-                      <p className="text-sm font-semibold text-blue-800 uppercase tracking-wider">
+                      <p className={cn(
+                        "text-sm font-semibold uppercase tracking-wider",
+                        job.jobStatus === 'completed' ? "text-green-800" :
+                          job.jobStatus === 'in_progress' ? "text-yellow-800" :
+                            job.jobStatus === 'canceled' ? "text-red-800" :
+                              "text-blue-800"
+                      )}>
                         {format(jobDate, "MMM", { locale: ptBR })}
                       </p>
-                      <p className="text-3xl font-bold text-blue-900 leading-none my-1">
+                      <p className={cn(
+                        "text-3xl font-bold leading-none my-1",
+                        job.jobStatus === 'completed' ? "text-green-900" :
+                          job.jobStatus === 'in_progress' ? "text-yellow-900" :
+                            job.jobStatus === 'canceled' ? "text-red-900" :
+                              "text-blue-900"
+                      )}>
                         {format(jobDate, "dd")}
                       </p>
-                      <p className="text-xs font-medium text-blue-700">
+                      <p className={cn(
+                        "text-xs font-medium",
+                        job.jobStatus === 'completed' ? "text-green-700" :
+                          job.jobStatus === 'in_progress' ? "text-yellow-700" :
+                            job.jobStatus === 'canceled' ? "text-red-700" :
+                              "text-blue-700"
+                      )}>
                         {format(jobDate, "EEEE", { locale: ptBR })}
                       </p>
                     </div>
-                    <div className="flex items-center text-blue-800 font-medium md:mt-4 bg-white px-3 py-1.5 rounded-full shadow-sm">
+                    <div className={cn(
+                      "flex items-center font-medium md:mt-4 bg-white px-3 py-1.5 rounded-full shadow-sm",
+                      job.jobStatus === 'completed' ? "text-green-800" :
+                        job.jobStatus === 'in_progress' ? "text-yellow-800" :
+                          job.jobStatus === 'canceled' ? "text-red-800" :
+                            "text-blue-800"
+                    )}>
                       <Clock className="mr-1.5 h-4 w-4" />
                       {format(jobDate, "HH:mm")}
                     </div>
@@ -297,12 +333,14 @@ export function Schedule() {
                             <span className="mx-2 text-gray-300">•</span>
                             <span>{client.phone}</span>
                           </div>
-                          {client.address && (
-                            <div className="flex items-start text-sm text-gray-600">
-                              <MapPin className="mr-2 h-4 w-4 text-gray-400 mt-0.5 shrink-0" />
-                              <span>{client.address}</span>
-                            </div>
-                          )}
+                          <div className="flex items-start text-sm text-gray-600">
+                            <MapPin className="mr-2 h-4 w-4 text-gray-400 mt-0.5 shrink-0" />
+                            <span>
+                              {client.street}, {client.number}{client.complement && ` - ${client.complement}`}
+                              <br />
+                              {client.neighborhood}, {client.city} - {client.state} • CEP: {client.zipCode}
+                            </span>
+                          </div>
                         </div>
                       )}
                     </div>
