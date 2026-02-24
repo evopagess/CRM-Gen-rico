@@ -26,12 +26,12 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
       <header className="md:hidden bg-blue-600 text-white p-4 flex items-center justify-between shadow-md z-10">
         <div className="flex items-center gap-2">
           {settings.logo ? (
-            <div className="h-10 w-10 rounded-md bg-white overflow-hidden p-0.5">
+            <div className="h-8 w-8 rounded-md bg-white overflow-hidden p-0.5">
               <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[3px]" />
             </div>
           ) : (
-            <div className="h-10 w-10 rounded-md bg-white overflow-hidden p-1">
-              <img src="/logo.png" alt="AeroDesk Logo" className="h-full w-full object-contain" />
+            <div className="h-8 w-8 rounded-md bg-white overflow-hidden p-0">
+              <img src="/logo.png" alt="AeroDesk Logo" className="h-full w-full object-containScale" />
             </div>
           )}
           <div>
@@ -45,12 +45,12 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
       <aside className="hidden md:flex w-64 flex-col bg-white border-r border-gray-200 shadow-sm">
         <div className="p-6 border-b border-gray-100 flex items-center gap-3">
           {settings.logo ? (
-            <div className="h-12 w-12 rounded-lg bg-blue-50 border border-blue-100 overflow-hidden p-0.5">
+            <div className="h-10 w-10 rounded-lg bg-blue-50 border border-blue-100 overflow-hidden p-0.5">
               <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[5px]" />
             </div>
           ) : (
-            <div className="h-12 w-12 rounded-xl bg-white border border-gray-100 overflow-hidden p-1.5 flex items-center justify-center">
-              <img src="/logo.png" alt="AeroDesk Logo" className="h-full w-full object-contain" />
+            <div className="h-10 w-10 rounded-lg bg-white border border-gray-100 overflow-hidden p-0 flex items-center justify-center">
+              <img src="/logo.png" alt="AeroDesk Logo" className="h-full w-full object-contain scale-[1.2]" />
             </div>
           )}
           <div className="min-w-0">
