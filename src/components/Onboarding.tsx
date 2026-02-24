@@ -32,18 +32,32 @@ export function Onboarding() {
     };
 
     return (
-        <div className="fixed inset-0 bg-blue-600 z-[100] flex items-center justify-center p-4 overflow-y-auto">
-            <div className="max-w-md w-full py-8">
-                <div className="text-center mb-8 text-white">
-                    <div className="inline-flex h-24 w-24 rounded-2xl bg-white mb-4 shadow-xl overflow-hidden p-0 flex items-center justify-center">
+        <div className="fixed inset-0 bg-[#050a1f] z-[100] flex items-center justify-center p-4 overflow-hidden">
+            {/* Animated Tech Background Elements */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 rounded-full blur-[150px] animate-pulse transition-duration-3000" />
+                <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-blue-400/10 rounded-full blur-[100px]" />
+
+                {/* Subtle Grid Line Pattern */}
+                <div className="absolute inset-0 opacity-[0.03]"
+                    style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+                />
+            </div>
+
+            <div className="max-w-md w-full py-8 relative z-10 animate-in fade-in zoom-in duration-700">
+                <div className="text-center mb-10">
+                    <div className="inline-flex h-24 w-24 rounded-2xl bg-white shadow-[0_0_40px_rgba(59,130,246,0.3)] mb-6 overflow-hidden p-0 flex items-center justify-center ring-4 ring-white/10">
                         <img src="/logo.png" alt="AeroDesk Logo" className="h-full w-full object-contain scale-[1.3]" />
                     </div>
-                    <h1 className="text-3xl font-bold mb-2">Bem-vindo ao AeroDesk!</h1>
-                    <p className="text-blue-100 italic">"Ponto de início para elevar seu negócio de climatização"</p>
+                    <h1 className="text-4xl font-extrabold mb-2 tracking-tight text-white drop-shadow-md">
+                        Bem-vindo ao <span className="text-blue-400">AeroDesk!</span>
+                    </h1>
+                    <p className="text-blue-100/80 italic font-medium">"Ponto de início para elevar seu negócio de climatização"</p>
                 </div>
 
                 <form onSubmit={handleComplete}>
-                    <Card className="border-0 shadow-2xl">
+                    <Card className="border-0 shadow-[0_20px_50px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-md">
                         <CardHeader>
                             <CardTitle>Configurar Perfil</CardTitle>
                             <CardDescription>

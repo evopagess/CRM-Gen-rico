@@ -62,7 +62,7 @@ export function Quotes() {
       date: new Date(newQuote.date).toISOString(),
       items: newQuote.items,
       total,
-      status: 'draft',
+      status: 'active',
       createdAt: new Date().toISOString()
     });
 
@@ -188,9 +188,7 @@ export function Quotes() {
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
 
-      if (quote.status === 'draft') {
-        updateQuote({ ...quote, status: 'sent' });
-      }
+      // Status update removed as per new direct toggle requirement
     } catch (error) {
       console.error('Error generating PDF:', error);
       alert('Erro ao gerar o PDF. Verifique o console para mais detalhes.');
@@ -221,14 +219,8 @@ export function Quotes() {
               <Card key={quote.id} className="flex flex-col justify-between">
                 <CardHeader className="pb-4">
                   <div className="flex justify-between items-start">
-                    <Badge variant={
-                      quote.status === 'accepted' ? 'success' :
-                        quote.status === 'rejected' ? 'danger' :
-                          quote.status === 'sent' ? 'info' : 'default'
-                    }>
-                      {quote.status === 'accepted' ? 'Aprovado' :
-                        quote.status === 'rejected' ? 'Recusado' :
-                          quote.status === 'sent' ? 'Enviado' : 'Rascunho'}
+                    <Badge variant={quote.status === 'completed' ? 'success' : 'info'}>
+                      {quote.status === 'completed' ? 'CONCLUÍDO' : 'ATIVO'}
                     </Badge>
                     <span className="text-xs text-gray-500 font-medium">
                       #{quote.id.substring(0, 6).toUpperCase()}
@@ -255,14 +247,24 @@ export function Quotes() {
                   </div>
                 </CardContent>
                 <div className="p-4 border-t border-gray-100 bg-gray-50 flex justify-between items-center rounded-b-xl">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                    onClick={() => deleteQuote(quote.id)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      onClick={() => deleteQuote(quote.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => updateQuote({ ...quote, status: quote.status === 'active' ? 'completed' : 'active' })}
+                      className={quote.status === 'active' ? 'text-green-600 border-green-200 hover:bg-green-50' : 'text-blue-600 border-blue-200 hover:bg-blue-50'}
+                    >
+                      {quote.status === 'active' ? 'Marcar Concluído' : 'Reativar'}
+                    </Button>
+                  </div>
                   <Button
                     variant="primary"
                     size="sm"

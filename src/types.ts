@@ -41,7 +41,7 @@ export interface Quote {
   date: string;
   items: QuoteItem[];
   total: number;
-  status: 'draft' | 'sent' | 'accepted' | 'rejected';
+  status: 'active' | 'completed';
   createdAt: string;
 }
 
