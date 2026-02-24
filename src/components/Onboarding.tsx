@@ -38,7 +38,7 @@ export function Onboarding() {
                     <div className="inline-flex p-3 rounded-2xl bg-white/20 mb-4 backdrop-blur-sm">
                         <Rocket className="h-8 w-8" />
                     </div>
-                    <h1 className="text-3xl font-bold mb-2">Bem-vindo ao SmartAir!</h1>
+                    <h1 className="text-3xl font-bold mb-2">Bem-vindo ao AeroDesk!</h1>
                     <p className="text-blue-100 italic">"Ponto de início para elevar seu negócio de climatização"</p>
                 </div>
 

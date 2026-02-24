@@ -35,7 +35,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
             </div>
           )}
           <div>
-            <h1 className="font-bold text-lg tracking-tight leading-tight">SmartAir</h1>
+            <h1 className="font-bold text-lg tracking-tight leading-tight">AeroDesk</h1>
             <p className="text-[10px] text-blue-100 font-medium truncate max-w-[120px]">{settings.companyName}</p>
           </div>
         </div>

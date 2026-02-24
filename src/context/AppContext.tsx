@@ -19,7 +19,7 @@ const defaultState: AppState = {
   jobs: [],
   quotes: [],
   settings: {
-    companyName: 'SmartAir',
+    companyName: 'AeroDesk',
     onboardingCompleted: false
   }
 };

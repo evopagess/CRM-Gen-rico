@@ -31,7 +31,7 @@ export function Dashboard() {
       {isNewUser && (
         <Card className="bg-blue-50 border-blue-200">
           <CardContent className="p-6">
-            <h2 className="text-xl font-bold text-blue-900 mb-2">Bem-vindo ao SmartAir! 👋</h2>
+            <h2 className="text-xl font-bold text-blue-900 mb-2">Bem-vindo ao AeroDesk! 👋</h2>
             <p className="text-blue-800 mb-6">
               Parece que você está começando agora. Siga os passos abaixo para organizar seu negócio:
             </p>
