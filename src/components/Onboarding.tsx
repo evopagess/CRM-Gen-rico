@@ -35,8 +35,8 @@ export function Onboarding() {
         <div className="fixed inset-0 bg-blue-600 z-[100] flex items-center justify-center p-4 overflow-y-auto">
             <div className="max-w-md w-full py-8">
                 <div className="text-center mb-8 text-white">
-                    <div className="inline-flex p-3 rounded-2xl bg-white/20 mb-4 backdrop-blur-sm">
-                        <Rocket className="h-8 w-8" />
+                    <div className="inline-flex h-20 w-20 rounded-2xl bg-white mb-4 shadow-xl overflow-hidden p-1">
+                        <img src="/logo.png" alt="AeroDesk Logo" className="h-full w-full object-contain" />
                     </div>
                     <h1 className="text-3xl font-bold mb-2">Bem-vindo ao AeroDesk!</h1>
                     <p className="text-blue-100 italic">"Ponto de início para elevar seu negócio de climatização"</p>

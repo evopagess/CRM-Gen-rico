@@ -54,7 +54,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
             </div>
           )}
           <div className="min-w-0">
-            <h1 className="font-bold text-xl text-gray-900 tracking-tight leading-tight">SmartAir</h1>
+            <h1 className="font-bold text-xl text-gray-900 tracking-tight leading-tight">AeroDesk</h1>
             <p className="text-xs text-gray-500 font-medium truncate">{settings.companyName}</p>
           </div>
         </div>
