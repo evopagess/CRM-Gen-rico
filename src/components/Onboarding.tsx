@@ -36,95 +36,97 @@ export function Onboarding() {
     };
 
     return (
-        <div className="fixed inset-0 bg-[#050a1f] z-[100] flex items-center justify-center p-4 overflow-y-auto overflow-x-hidden">
-            {/* Animated Tech Background Elements */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 rounded-full blur-[150px] animate-pulse transition-duration-3000" />
-                <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-blue-400/10 rounded-full blur-[100px]" />
+        <div className="fixed inset-0 bg-[#050a1f] z-[100] overflow-y-auto overflow-x-hidden">
+            <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-4 py-8">
+                {/* Animated Tech Background Elements */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse" />
+                    <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 rounded-full blur-[150px] animate-pulse transition-duration-3000" />
+                    <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-blue-400/10 rounded-full blur-[100px]" />
 
-                {/* Subtle Grid Line Pattern */}
-                <div className="absolute inset-0 opacity-[0.03]"
-                    style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}
-                />
-            </div>
-
-            <div className="max-w-md w-full py-8 relative z-10 animate-in fade-in zoom-in duration-700">
-                <div className="text-center mb-10">
-                    <div className="inline-flex h-24 w-24 rounded-2xl bg-white shadow-[0_0_40px_rgba(59,130,246,0.3)] mb-6 overflow-hidden p-0 flex items-center justify-center ring-4 ring-white/10">
-                        <img src="/logo.png" alt="AeroDesk Logo" className="h-full w-full object-contain scale-[1.3]" />
-                    </div>
-                    <h1 className="text-4xl font-extrabold mb-2 tracking-tight text-white drop-shadow-md">
-                        Bem-vindo ao <span className="text-blue-400">AeroDesk!</span>
-                    </h1>
-                    <p className="text-blue-100/80 italic font-medium">"Ponto de início para elevar seu negócio de climatização"</p>
+                    {/* Subtle Grid Line Pattern */}
+                    <div className="absolute inset-0 opacity-[0.03]"
+                        style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+                    />
                 </div>
 
-                <form onSubmit={handleComplete}>
-                    <Card className="border-0 shadow-[0_20px_50px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-md">
-                        <CardHeader>
-                            <CardTitle>Configurar Perfil</CardTitle>
-                            <CardDescription>
-                                Vamos começar configurando os dados básicos da sua empresa.
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent className="space-y-6">
-                            <div className="space-y-4">
-                                <Input
-                                    label="Nome da sua Empresa"
-                                    placeholder="Ex: João Ar Condicionado"
-                                    value={companyName}
-                                    onChange={(e) => setCompanyName(e.target.value)}
-                                    required
-                                />
+                <div className="max-w-md w-full py-8 relative z-10 animate-in fade-in zoom-in duration-700">
+                    <div className="text-center mb-10">
+                        <div className="inline-flex h-24 w-24 rounded-2xl bg-white shadow-[0_0_40px_rgba(59,130,246,0.3)] mb-6 overflow-hidden p-0 flex items-center justify-center ring-4 ring-white/10">
+                            <img src="/logo.png" alt="AeroDesk Logo" className="h-full w-full object-contain scale-[1.3]" />
+                        </div>
+                        <h1 className="text-4xl font-extrabold mb-2 tracking-tight text-white drop-shadow-md">
+                            Bem-vindo ao <span className="text-blue-400">AeroDesk!</span>
+                        </h1>
+                        <p className="text-blue-100/80 italic font-medium">"Ponto de início para elevar seu negócio de climatização"</p>
+                    </div>
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <form onSubmit={handleComplete}>
+                        <Card className="border-0 shadow-[0_20px_50px_rgba(0,0,0,0.3)] bg-white/95 backdrop-blur-md">
+                            <CardHeader>
+                                <CardTitle>Configurar Perfil</CardTitle>
+                                <CardDescription>
+                                    Vamos começar configurando os dados básicos da sua empresa.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="space-y-6">
+                                <div className="space-y-4">
                                     <Input
-                                        label="Usuário"
-                                        placeholder="Seu usuário"
-                                        value={username}
-                                        onChange={(e) => setUsername(e.target.value)}
+                                        label="Nome da sua Empresa"
+                                        placeholder="Ex: João Ar Condicionado"
+                                        value={companyName}
+                                        onChange={(e) => setCompanyName(e.target.value)}
                                         required
                                     />
-                                    <Input
-                                        label="Senha"
-                                        type="password"
-                                        placeholder="Sua senha"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        required
-                                    />
-                                </div>
 
-                                <div className="space-y-2">
-                                    <label className="block text-sm font-medium text-gray-700">Foto de Perfil ou Logo</label>
-                                    <div className="flex items-center gap-4">
-                                        <div className="h-20 w-20 rounded-xl bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden shrink-0">
-                                            {logo ? (
-                                                <img src={logo} alt="Preview" className="h-full w-full object-cover" />
-                                            ) : (
-                                                <Building2 className="h-8 w-8 text-gray-400" />
-                                            )}
-                                        </div>
-                                        <div className="flex-1">
-                                            <label className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none">
-                                                <span className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                                    <Upload className="mr-2 h-4 w-4" /> Escolher Imagem
-                                                </span>
-                                                <input type="file" className="sr-only" accept="image/*" onChange={handleLogoChange} />
-                                            </label>
-                                            <p className="mt-1 text-xs text-gray-500">PNG, JPG até 2MB</p>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <Input
+                                            label="Usuário"
+                                            placeholder="Seu usuário"
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
+                                            required
+                                        />
+                                        <Input
+                                            label="Senha"
+                                            type="password"
+                                            placeholder="Sua senha"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label className="block text-sm font-medium text-gray-700">Foto de Perfil ou Logo</label>
+                                        <div className="flex items-center gap-4">
+                                            <div className="h-20 w-20 rounded-xl bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden shrink-0">
+                                                {logo ? (
+                                                    <img src={logo} alt="Preview" className="h-full w-full object-cover" />
+                                                ) : (
+                                                    <Building2 className="h-8 w-8 text-gray-400" />
+                                                )}
+                                            </div>
+                                            <div className="flex-1">
+                                                <label className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none">
+                                                    <span className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                                        <Upload className="mr-2 h-4 w-4" /> Escolher Imagem
+                                                    </span>
+                                                    <input type="file" className="sr-only" accept="image/*" onChange={handleLogoChange} />
+                                                </label>
+                                                <p className="mt-1 text-xs text-gray-500">PNG, JPG até 2MB</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <Button type="submit" className="w-full py-6 text-lg">
-                                Começar a usar agora
-                            </Button>
-                        </CardContent>
-                    </Card>
-                </form>
+                                <Button type="submit" className="w-full py-6 text-lg">
+                                    Começar a usar agora
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </form>
+                </div>
             </div>
         </div>
     );
