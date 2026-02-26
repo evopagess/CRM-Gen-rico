@@ -4,7 +4,6 @@ import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card';
 import { Building2, Upload, Rocket } from 'lucide-react';
-import logoImg from '../assets/brand/logo.png';
 
 export function Onboarding() {
     const { settings, updateSettings } = useAppStore();
@@ -54,7 +53,7 @@ export function Onboarding() {
                 <div className="max-w-md w-full py-8 relative z-10 animate-in fade-in zoom-in duration-700">
                     <div className="text-center mb-10">
                         <div className="inline-flex h-32 w-32 mb-8 overflow-hidden flex items-center justify-center group">
-                            <img src={logoImg} alt="NEXUS Logo" className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-700" />
+                            <img src="/logo.png" alt="NEXUS Logo" className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-700" />
                         </div>
                         <h1 className="text-5xl font-black mb-3 tracking-tighter text-white drop-shadow-2xl italic uppercase">
                             NEXUS

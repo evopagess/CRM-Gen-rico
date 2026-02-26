@@ -3,7 +3,6 @@ import { Calendar, Users, FileText, Home, Menu, Settings, HelpCircle } from 'luc
 import { cn } from '../utils/cn';
 
 import { useAppStore } from '../context/AppContext';
-import logoImg from '../assets/brand/logo.png';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -27,15 +26,19 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
       {/* Mobile Header */}
       <header className="md:hidden gradient-brand text-white p-5 flex items-center justify-between shadow-premium z-10">
         <div className="flex items-center gap-3">
-          {settings.logo ? (
-            <div className="h-10 w-10 overflow-hidden flex items-center justify-center">
-              <img src={settings.logo} alt="Logo" className="h-full w-full object-contain" />
-            </div>
-          ) : (
-            <div className="h-10 w-10 overflow-hidden flex items-center justify-center p-1">
-              <img src={logoImg} alt="NEXUS Logo" className="h-full w-full object-contain" />
-            </div>
-          )}
+          <div className="h-10 w-10 overflow-hidden flex items-center justify-center">
+            <img
+              src={settings.logo || '/logo.png'}
+              alt="Logo"
+              className="h-full w-full object-contain"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                if (target.src !== window.location.origin + '/logo.png') {
+                  target.src = '/logo.png';
+                }
+              }}
+            />
+          </div>
           <div>
             <h1 className="font-bold text-xl tracking-tight leading-tight text-white uppercase italic">NEXUS</h1>
             <p className="text-[10px] text-brand-100 font-bold truncate max-w-[120px] uppercase tracking-tighter opacity-80">{settings.companyName}</p>
@@ -46,15 +49,19 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex w-72 flex-col bg-white border-r border-zinc-200/60 shadow-xl relative z-30">
         <div className="p-8 border-b border-zinc-100 flex items-center gap-4">
-          {settings.logo ? (
-            <div className="h-12 w-12 overflow-hidden flex items-center justify-center">
-              <img src={settings.logo} alt="Logo" className="h-full w-full object-contain" />
-            </div>
-          ) : (
-            <div className="h-12 w-12 overflow-hidden flex items-center justify-center p-1 shadow-sm rounded-xl">
-              <img src={logoImg} alt="NEXUS Logo" className="h-full w-full object-contain" />
-            </div>
-          )}
+          <div className="h-12 w-12 overflow-hidden flex items-center justify-center">
+            <img
+              src={settings.logo || '/logo.png'}
+              alt="Logo"
+              className="h-full w-full object-contain"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                if (target.src !== window.location.origin + '/logo.png') {
+                  target.src = '/logo.png';
+                }
+              }}
+            />
+          </div>
           <div className="min-w-0">
             <h1 className="font-black text-2xl text-zinc-900 tracking-tighter leading-tight italic uppercase">NEXUS</h1>
             <p className="text-[10px] text-zinc-400 font-bold truncate uppercase tracking-widest">{settings.companyName}</p>
