@@ -35,7 +35,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
       {isNewUser && (
         <Card className="bg-blue-50 border-blue-200">
           <CardContent className="p-6">
-            <h2 className="text-xl font-bold text-blue-900 mb-2">Bem-vindo ao AeroDesk! 👋</h2>
+            <h2 className="text-xl font-bold text-slate-900 mb-2">Bem-vindo ao NEXUS! 👋</h2>
             <p className="text-blue-800 mb-6">
               Parece que você está começando agora. Siga os passos abaixo para organizar seu negócio:
             </p>
@@ -78,12 +78,14 @@ export function Dashboard({ onNavigate }: DashboardProps) {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-500">Serviços Hoje</CardTitle>
-            <Calendar className="h-4 w-4 text-blue-600" />
+            <CardTitle className="text-sm font-medium text-slate-500">Serviços Hoje</CardTitle>
+            <div className="bg-brand-100 p-1.5 rounded-lg text-brand-600">
+              <Calendar className="h-4 w-4" />
+            </div>
           </CardHeader>
           <CardContent className="p-4 sm:p-6">
-            <div className="text-xl sm:text-2xl font-bold text-gray-900">{todayJobs.length}</div>
-            <p className="text-[10px] sm:text-xs text-gray-500 mt-1 truncate">
+            <div className="text-xl sm:text-3xl font-bold text-slate-900 tracking-tight">{todayJobs.length}</div>
+            <p className="text-[10px] sm:text-xs text-slate-500 mt-1 truncate font-medium">
               {todayJobs.filter(j => j.jobStatus === 'completed').length} concluídos
             </p>
           </CardContent>
@@ -91,14 +93,16 @@ export function Dashboard({ onNavigate }: DashboardProps) {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-500">A Receber</CardTitle>
-            <Clock className="h-4 w-4 text-amber-500" />
+            <CardTitle className="text-sm font-medium text-slate-500">A Receber</CardTitle>
+            <div className="bg-amber-100 p-1.5 rounded-lg text-amber-600">
+              <Clock className="h-4 w-4" />
+            </div>
           </CardHeader>
           <CardContent className="p-4 sm:p-6">
-            <div className="text-xl sm:text-2xl font-bold text-gray-900 truncate">
+            <div className="text-xl sm:text-3xl font-bold text-slate-900 tracking-tight truncate">
               {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(totalPending)}
             </div>
-            <p className="text-[10px] sm:text-xs text-gray-500 mt-1 truncate">
+            <p className="text-[10px] sm:text-xs text-slate-500 mt-1 truncate font-medium">
               {pendingPayments.length} pendentes
             </p>
           </CardContent>
@@ -106,26 +110,31 @@ export function Dashboard({ onNavigate }: DashboardProps) {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-500">Recebido Hoje</CardTitle>
-            <DollarSign className="h-4 w-4 text-green-600" />
+            <CardTitle className="text-sm font-medium text-slate-500">Recebido Hoje</CardTitle>
+            <div className="bg-emerald-100 p-1.5 rounded-lg text-emerald-600">
+              <DollarSign className="h-4 w-4" />
+            </div>
           </CardHeader>
           <CardContent className="p-4 sm:p-6">
-            <div className="text-xl sm:text-2xl font-bold text-gray-900 truncate">
+            <div className="text-xl sm:text-3xl font-bold text-slate-900 tracking-tight truncate">
               {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(totalEarnedToday)}
             </div>
+            <p className="text-[10px] sm:text-xs text-slate-500 mt-1 truncate font-medium">Total hoje</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-500">Orçamentos Ativos</CardTitle>
-            <CheckCircle className="h-4 w-4 text-purple-600" />
+            <CardTitle className="text-sm font-medium text-slate-500">Orçamentos</CardTitle>
+            <div className="bg-purple-100 p-1.5 rounded-lg text-purple-600">
+              <CheckCircle className="h-4 w-4" />
+            </div>
           </CardHeader>
           <CardContent className="p-4 sm:p-6">
-            <div className="text-xl sm:text-2xl font-bold text-gray-900">
+            <div className="text-xl sm:text-3xl font-bold text-slate-900 tracking-tight">
               {quotes.filter(q => q.status === 'active').length}
             </div>
-            <p className="text-[10px] sm:text-xs text-gray-500 mt-1 truncate">Orçamentos Ativos</p>
+            <p className="text-[10px] sm:text-xs text-slate-500 mt-1 truncate font-medium">Ativos agora</p>
           </CardContent>
         </Card>
       </div>

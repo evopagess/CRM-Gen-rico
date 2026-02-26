@@ -53,10 +53,10 @@ export function Onboarding() {
                 <div className="max-w-md w-full py-8 relative z-10 animate-in fade-in zoom-in duration-700">
                     <div className="text-center mb-10">
                         <div className="inline-flex h-24 w-24 rounded-2xl bg-white shadow-[0_0_40px_rgba(59,130,246,0.3)] mb-6 overflow-hidden p-0 flex items-center justify-center ring-4 ring-white/10">
-                            <img src="/logo.png" alt="AeroDesk Logo" className="h-full w-full object-contain scale-[1.3]" />
+                            <img src="/logo.png" alt="NEXUS Logo" className="h-full w-full object-contain scale-[1.3]" />
                         </div>
                         <h1 className="text-4xl font-extrabold mb-2 tracking-tight text-white drop-shadow-md">
-                            Bem-vindo ao <span className="text-blue-400">AeroDesk!</span>
+                            Bem-vindo ao <span className="text-brand-400">NEXUS!</span>
                         </h1>
                         <p className="text-blue-100/80 italic font-medium">"Ponto de início para elevar seu negócio de climatização"</p>
                     </div>

@@ -28,7 +28,7 @@ export function Tutorial({ onNavigate }: TutorialProps) {
         },
         {
             title: '2. Cadastre seus Clientes',
-            description: 'Adicione os dados dos seus clientes, incluindo endereço completo. O AeroDesk organizará tudo para você.',
+            description: 'Adicione os dados dos seus clientes, incluindo endereço completo. O NEXUS organizará tudo para você.',
             icon: UserPlus,
             color: 'bg-green-100 text-green-600',
             action: 'Ir para Clientes',
@@ -64,7 +64,7 @@ export function Tutorial({ onNavigate }: TutorialProps) {
         <div className="space-y-8 animate-in fade-in duration-500">
             <div className="text-center max-w-2xl mx-auto space-y-4">
                 <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-                    Como usar o <span className="text-blue-600">AeroDesk</span>
+                    Como usar o <span className="text-brand-600">NEXUS</span>
                 </h1>
                 <p className="text-lg text-gray-600">
                     Siga este guia simples para elevar o nível do seu negócio de climatização e impressionar seus clientes.
@@ -111,7 +111,7 @@ export function Tutorial({ onNavigate }: TutorialProps) {
                     </div>
                     <h2 className="text-3xl font-bold leading-tight">Pronto para começar?</h2>
                     <p className="text-blue-100 text-lg max-w-xl mx-auto">
-                        O AeroDesk foi feito para facilitar sua vida. Organize seus horários, clientes e finanças em um só lugar.
+                        O NEXUS foi feito para facilitar sua vida. Organize seus horários, clientes e finanças em um só lugar.
                     </p>
                 </CardContent>
             </Card>

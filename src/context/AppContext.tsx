@@ -19,7 +19,7 @@ const defaultState: AppState = {
   jobs: [],
   quotes: [],
   settings: {
-    companyName: 'AeroDesk',
+    companyName: 'NEXUS',
     onboardingCompleted: false
   }
 };
