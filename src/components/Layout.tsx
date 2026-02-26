@@ -25,50 +25,45 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
   return (
     <div className="flex h-[100dvh] w-full overflow-hidden bg-zinc-50 flex-col md:flex-row">
       {/* Mobile Header */}
-      <header className="md:hidden gradient-brand text-white p-5 flex items-center justify-between shadow-premium z-10">
+      {/* Mobile Header */}
+      <header className="md:hidden gradient-brand text-white p-5 flex items-center justify-between shadow-premium z-10 transition-all">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 overflow-hidden flex items-center justify-center">
-            <img
-              src={settings.logo || '/logo.png'}
-              alt="Logo"
-              className="h-full w-full object-contain"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                if (target.src !== window.location.origin + '/logo.png') {
-                  target.src = '/logo.png';
-                }
-              }}
-            />
+          <div className="h-10 w-10 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 overflow-hidden flex items-center justify-center p-1 shadow-inner">
+            {settings.logo ? (
+              <img src={settings.logo} alt="Empresa" className="h-full w-full object-cover rounded-lg" />
+            ) : (
+              <Users className="h-5 w-5 text-white" />
+            )}
           </div>
           <div>
-            <h1 className="font-poppins font-semibold text-xl tracking-tight leading-tight uppercase text-gradient-gold">NEXUS</h1>
-            <p className="text-[10px] text-brand-100 font-bold truncate max-w-[120px] uppercase tracking-tighter opacity-80">{settings.companyName}</p>
+            <h1 className="font-poppins font-bold text-lg tracking-tight leading-tight uppercase line-clamp-1">{settings.companyName || 'Minha Empresa'}</h1>
+            <p className="text-[10px] text-brand-100 font-medium uppercase tracking-[0.2em] opacity-80">Painel Administrativo</p>
           </div>
         </div>
       </header>
 
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex w-72 flex-col bg-white border-r border-zinc-200/60 shadow-xl relative z-30">
-        <div className="p-8 border-b border-zinc-100 flex items-center gap-4">
-          <div className="h-12 w-12 overflow-hidden flex items-center justify-center">
-            <img
-              src={settings.logo || '/logo.png'}
-              alt="Logo"
-              className="h-full w-full object-contain"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                if (target.src !== window.location.origin + '/logo.png') {
-                  target.src = '/logo.png';
-                }
-              }}
-            />
+        {/* Top Section - User Profile */}
+        <div className="p-8 border-b border-zinc-100 flex items-center gap-4 bg-zinc-50/50">
+          <div className="h-12 w-12 rounded-2xl bg-white border border-zinc-200 shadow-sm overflow-hidden flex items-center justify-center p-1 shrink-0">
+            {settings.logo ? (
+              <img src={settings.logo} alt="Empresa" className="h-full w-full object-cover rounded-xl" />
+            ) : (
+              <Users className="h-6 w-6 text-zinc-400" />
+            )}
           </div>
           <div className="min-w-0">
-            <h1 className="font-poppins font-semibold text-2xl text-zinc-900 tracking-tighter leading-tight uppercase text-gradient-gold">NEXUS</h1>
-            <p className="text-[10px] text-zinc-400 font-bold truncate uppercase tracking-widest">{settings.companyName}</p>
+            <h2 className="text-sm font-black text-zinc-900 leading-tight uppercase italic tracking-tighter truncate">{settings.companyName || 'Minha Empresa'}</h2>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Online</span>
+            </div>
           </div>
         </div>
-        <nav className="flex-1 p-4 space-y-1">
+
+        {/* Navigation */}
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -77,18 +72,34 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
                 className={cn(
-                  "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors",
+                  "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all group",
                   isActive
                     ? "bg-brand-50 text-brand-700 shadow-premium shadow-brand-500/10 ring-1 ring-brand-200/50"
                     : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900"
                 )}
               >
-                <Icon size={20} className={isActive ? "text-brand-600" : "text-zinc-400"} />
+                <Icon size={20} className={cn(
+                  "transition-colors",
+                  isActive ? "text-brand-600" : "text-zinc-400 group-hover:text-zinc-600"
+                )} />
                 {item.label}
               </button>
             );
           })}
         </nav>
+
+        {/* Bottom Section - NEXUS Branding */}
+        <div className="p-6 border-t border-zinc-100 bg-zinc-50/30">
+          <div className="flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
+            <div className="h-8 w-8 overflow-hidden flex items-center justify-center shrink-0">
+              <img src="/logo.png" alt="NEXUS" className="h-full w-full object-contain" />
+            </div>
+            <div>
+              <span className="block text-[14px] font-poppins font-semibold text-gradient-gold uppercase tracking-tighter leading-none">NEXUS</span>
+              <span className="block text-[8px] text-zinc-400 font-black uppercase tracking-[0.3em] mt-0.5">Intelligence</span>
+            </div>
+          </div>
+        </div>
       </aside>
 
       {/* Main Content */}
