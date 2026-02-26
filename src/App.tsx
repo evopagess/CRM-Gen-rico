@@ -13,6 +13,7 @@ import { Quotes } from './pages/Quotes';
 import { Settings } from './pages/Settings';
 import { Onboarding } from './components/Onboarding';
 import { Tutorial } from './pages/Tutorial';
+import { Earnings } from './pages/Earnings';
 import { useAppStore } from './context/AppContext';
 
 export default function App() {
@@ -29,6 +30,8 @@ export default function App() {
         return <Clients />;
       case 'quotes':
         return <Quotes />;
+      case 'earnings':
+        return <Earnings />;
       case 'tutorial':
         return <Tutorial onNavigate={setActiveTab} />;
       case 'settings':

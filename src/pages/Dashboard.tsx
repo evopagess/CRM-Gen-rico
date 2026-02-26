@@ -2,9 +2,11 @@ import React from 'react';
 import { useAppStore } from '../context/AppContext';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
+import { Modal } from '../components/ui/Modal';
+import { Button } from '../components/ui/Button';
 import { format, isToday, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { Calendar, DollarSign, Clock, CheckCircle, ArrowRight, UserPlus, FileText, ChevronDown } from 'lucide-react';
+import { Calendar, DollarSign, Clock, CheckCircle, ArrowRight, UserPlus, FileText, ChevronDown, Trash2 } from 'lucide-react';
 import { JobStatus } from '../types';
 import { cn } from '../utils/cn';
 
@@ -13,7 +15,8 @@ interface DashboardProps {
 }
 
 export function Dashboard({ onNavigate }: DashboardProps) {
-  const { jobs, quotes, clients, updateJob } = useAppStore();
+  const { jobs, quotes, clients, updateJob, deleteJob } = useAppStore();
+  const [isEarningsModalOpen, setIsEarningsModalOpen] = React.useState(false);
 
   const todayJobs = jobs.filter(job => isToday(parseISO(job.date)));
   const pendingPayments = jobs.filter(job => job.paymentStatus === 'pending' && job.jobStatus === 'completed');
@@ -120,7 +123,10 @@ export function Dashboard({ onNavigate }: DashboardProps) {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card
+          className="cursor-pointer hover:shadow-premium transition-all active:scale-[0.98]"
+          onClick={() => setIsEarningsModalOpen(true)}
+        >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs font-black text-zinc-400 uppercase tracking-widest italic">Recebido Hoje</CardTitle>
             <div className="bg-emerald-100 p-1.5 rounded-lg text-emerald-600">
@@ -131,7 +137,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             <div className="text-xl sm:text-4xl font-black text-zinc-950 tracking-tighter italic truncate">
               {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalEarnedToday)}
             </div>
-            <p className="text-[10px] sm:text-xs text-zinc-400 mt-2 truncate font-bold uppercase tracking-tighter opacity-70">Total hoje</p>
+            <p className="text-[10px] sm:text-xs text-brand-600 mt-2 truncate font-bold uppercase tracking-tighter opacity-70 group-hover:underline">Gerenciar valores</p>
           </CardContent>
         </Card>
 
@@ -248,6 +254,53 @@ export function Dashboard({ onNavigate }: DashboardProps) {
           </CardContent>
         </Card>
       </div>
-    </div>
+
+      <Modal
+        isOpen={isEarningsModalOpen}
+        onClose={() => setIsEarningsModalOpen(false)}
+        title="Ganhos de Hoje"
+      >
+        <div className="space-y-4">
+          {todayJobs.filter(j => j.paymentStatus === 'paid').length === 0 ? (
+            <p className="text-center text-zinc-500 py-4">Nenhum recebimento registrado para hoje.</p>
+          ) : (
+            todayJobs.filter(j => j.paymentStatus === 'paid').map(job => (
+              <div key={job.id} className="flex items-center justify-between p-4 bg-zinc-50 rounded-2xl border border-zinc-100">
+                <div className="flex-1 min-w-0 pr-4">
+                  <p className="font-bold text-zinc-900 truncate">{job.description}</p>
+                  <p className="text-xs text-brand-600 font-black uppercase tracking-widest mt-1">
+                    {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(job.price)}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-9 w-9 p-0 text-zinc-400 hover:text-rose-600 hover:bg-rose-50"
+                    onClick={() => {
+                      if (confirm('Deseja estornar este valor? O status voltará para pendente.')) {
+                        updateJob({ ...job, paymentStatus: 'pending' });
+                      }
+                    }}
+                  >
+                    <Trash2 size={16} />
+                  </Button>
+                </div>
+              </div>
+            ))
+          )}
+          <Button
+            className="w-full mt-4"
+            variant="outline"
+            onClick={() => {
+              setIsEarningsModalOpen(false);
+              onNavigate('earnings');
+            }}
+          >
+            Ver Histórico Completo
+          </Button>
+        </div>
+      </Modal>
+    </div >
   );
 }
