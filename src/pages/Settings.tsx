@@ -3,10 +3,10 @@ import { useAppStore } from '../context/AppContext';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card';
-import { Save, Building2, Upload } from 'lucide-react';
+import { Save, Building2, Upload, LogOut } from 'lucide-react';
 
 export function Settings() {
-    const { settings, updateSettings } = useAppStore();
+    const { settings, updateSettings, logout } = useAppStore();
     const [companyName, setCompanyName] = useState(settings.companyName);
     const [logo, setLogo] = useState<string | undefined>(settings.logo);
 
@@ -33,7 +33,7 @@ export function Settings() {
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900">Configurações</h1>
             </div>
 
-            <div className="max-w-2xl">
+            <div className="max-w-2xl space-y-6">
                 <form onSubmit={handleSave}>
                     <Card>
                         <CardHeader>
@@ -87,6 +87,34 @@ export function Settings() {
                         </CardContent>
                     </Card>
                 </form>
+
+                <Card className="border-rose-100 bg-rose-50/30">
+                    <CardHeader>
+                        <CardTitle className="text-rose-600 text-lg uppercase font-black italic tracking-widest">Conta e Acesso</CardTitle>
+                        <CardDescription>
+                            Gerencie sua sessão ativa no dispositivo.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-rose-100 shadow-sm">
+                            <div className="flex flex-col">
+                                <span className="text-sm font-bold text-zinc-900 italic uppercase tracking-tighter">Sessão Ativa</span>
+                                <span className="text-xs text-zinc-500 font-medium">Você está conectado como administrador.</span>
+                            </div>
+                            <Button
+                                variant="outline"
+                                className="border-rose-200 text-rose-600 hover:bg-rose-600 hover:text-white transition-all font-black uppercase italic tracking-widest text-xs py-5 px-6 rounded-xl active:scale-95"
+                                onClick={() => {
+                                    if (confirm('Deseja realmente sair da sua conta? Você precisará fazer login novamente.')) {
+                                        logout();
+                                    }
+                                }}
+                            >
+                                <LogOut className="mr-2 h-4 w-4" /> Sair da Conta
+                            </Button>
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
         </div>
     );
