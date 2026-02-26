@@ -6,10 +6,10 @@ import { ptBR } from 'date-fns/locale';
 import { DollarSign, TrendingUp, Calendar, Trash2 } from 'lucide-react';
 
 export function Earnings() {
-    const { jobs, hiddenEarningsIds, hideJobFromHistory } = useAppStore();
+    const { jobs, updateJob, deleteJob } = useAppStore();
 
     const paidJobs = jobs
-        .filter(job => job.paymentStatus === 'paid' && !hiddenEarningsIds?.includes(job.id))
+        .filter(job => job.paymentStatus === 'paid')
         .sort((a, b) => parseISO(b.date).getTime() - parseISO(a.date).getTime());
 
     const totalHistorical = paidJobs.reduce((acc, job) => acc + job.price, 0);
@@ -23,8 +23,9 @@ export function Earnings() {
         .reduce((acc, job) => acc + job.price, 0);
 
     const handleRefund = (jobId: string) => {
-        if (confirm('Deseja remover este registro do histórico? Isso não alterará o status do serviço.')) {
-            hideJobFromHistory(jobId);
+        const job = jobs.find(j => j.id === jobId);
+        if (job) {
+            updateJob({ ...job, paymentStatus: 'pending' });
         }
     };
 
@@ -122,7 +123,7 @@ export function Earnings() {
                                                 <button
                                                     onClick={() => handleRefund(job.id)}
                                                     className="p-2 text-zinc-400 hover:text-rose-600 transition-colors group/btn"
-                                                    title="Remover do Histórico"
+                                                    title="Extornar (Mudar para Pendente)"
                                                 >
                                                     <Trash2 size={16} />
                                                 </button>

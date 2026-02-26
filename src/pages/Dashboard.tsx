@@ -15,7 +15,7 @@ interface DashboardProps {
 }
 
 export function Dashboard({ onNavigate }: DashboardProps) {
-  const { jobs, quotes, clients, hiddenEarningsIds, hideJobFromHistory, updateJob } = useAppStore();
+  const { jobs, quotes, clients, updateJob, deleteJob } = useAppStore();
   const [isEarningsModalOpen, setIsEarningsModalOpen] = React.useState(false);
 
   const todayJobs = jobs.filter(job => isToday(parseISO(job.date)));
@@ -261,10 +261,10 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         title="Ganhos de Hoje"
       >
         <div className="space-y-4">
-          {todayJobs.filter(j => j.paymentStatus === 'paid' && !hiddenEarningsIds?.includes(j.id)).length === 0 ? (
+          {todayJobs.filter(j => j.paymentStatus === 'paid').length === 0 ? (
             <p className="text-center text-zinc-500 py-4">Nenhum recebimento registrado para hoje.</p>
           ) : (
-            todayJobs.filter(j => j.paymentStatus === 'paid' && !hiddenEarningsIds?.includes(j.id)).map(job => (
+            todayJobs.filter(j => j.paymentStatus === 'paid').map(job => (
               <div key={job.id} className="flex items-center justify-between p-4 bg-zinc-50 rounded-2xl border border-zinc-100">
                 <div className="flex-1 min-w-0 pr-4">
                   <p className="font-bold text-zinc-900 truncate">{job.description}</p>
@@ -278,8 +278,8 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                     size="sm"
                     className="h-9 w-9 p-0 text-zinc-400 hover:text-rose-600 hover:bg-rose-50"
                     onClick={() => {
-                      if (confirm('Deseja remover este registro do painel de hoje? Isso não alterará o status do serviço.')) {
-                        hideJobFromHistory(job.id);
+                      if (confirm('Deseja estornar este valor? O status voltará para pendente.')) {
+                        updateJob({ ...job, paymentStatus: 'pending' });
                       }
                     }}
                   >
