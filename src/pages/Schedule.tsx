@@ -83,17 +83,17 @@ export function Schedule() {
         try {
           doc.addImage(settings.logo, 'PNG', 14, 12, 12, 12);
           doc.setFontSize(20);
-          doc.setTextColor(139, 92, 246);
+          doc.setTextColor(217, 119, 6); // brand-600 golden
           doc.text(settings.companyName, 30, 22);
         } catch (e) {
           console.error('Error adding logo to PDF', e);
           doc.setFontSize(20);
-          doc.setTextColor(139, 92, 246);
+          doc.setTextColor(217, 119, 6);
           doc.text(settings.companyName, 14, 22);
         }
       } else {
         doc.setFontSize(20);
-        doc.setTextColor(139, 92, 246); // brand-500 violet
+        doc.setTextColor(217, 119, 6); // brand-600 golden
         doc.text(settings.companyName, 14, 22);
       }
 
@@ -145,7 +145,7 @@ export function Schedule() {
         head: [tableColumn],
         body: tableRows,
         theme: 'striped',
-        headStyles: { fillColor: [124, 58, 237] },
+        headStyles: { fillColor: [217, 119, 6] }, // brand-600 golden
         styles: { fontSize: 10 },
         margin: { left: 20, right: 20 },
         columnStyles: {
