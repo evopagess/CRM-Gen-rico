@@ -75,8 +75,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       addClient, updateClient, deleteClient,
       addJob, updateJob, deleteJob,
       addQuote, updateQuote, deleteQuote,
-      updateSettings,
-      hideJobFromHistory
+      updateSettings
     }}>
       {children}
     </AppContext.Provider>
