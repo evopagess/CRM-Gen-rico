@@ -94,10 +94,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
             <div className="h-8 w-8 overflow-hidden flex items-center justify-center shrink-0">
               <img src="/logo.png" alt="NEXUS" className="h-full w-full object-contain" />
             </div>
-            <div>
-              <span className="block text-[14px] font-poppins font-semibold text-gradient-gold uppercase tracking-tighter leading-none">NEXUS</span>
-              <span className="block text-[8px] text-zinc-400 font-black uppercase tracking-[0.3em] mt-0.5">Intelligence</span>
-            </div>
+            <span className="text-[16px] font-poppins font-semibold text-gradient-gold uppercase tracking-tighter leading-none">NEXUS</span>
           </div>
         </div>
       </aside>
