@@ -41,7 +41,10 @@ export function Dashboard({ onNavigate }: DashboardProps) {
               Pronto para elevar o nível do seu negócio? Comece integrando seu fluxo de trabalho:
             </p>
             <div className="grid gap-6 md:grid-cols-3">
-              <div className="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm flex flex-col items-center text-center group/item hover:shadow-premium transition-all hover:-translate-y-1">
+              <div
+                onClick={() => onNavigate('clients')}
+                className="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm flex flex-col items-center text-center group/item hover:shadow-premium transition-all hover:-translate-y-1 cursor-pointer"
+              >
                 <div className="gradient-brand p-4 rounded-2xl mb-4 text-white shadow-premium shadow-brand-500/30 group-hover/item:scale-110 transition-transform">
                   <UserPlus size={28} />
                 </div>
@@ -51,7 +54,10 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                   Explorar Clientes <ArrowRight size={14} className="ml-1" />
                 </div>
               </div>
-              <div className="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm flex flex-col items-center text-center group/item hover:shadow-premium transition-all hover:-translate-y-1">
+              <div
+                onClick={() => onNavigate('schedule')}
+                className="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm flex flex-col items-center text-center group/item hover:shadow-premium transition-all hover:-translate-y-1 cursor-pointer"
+              >
                 <div className="bg-amber-500 p-4 rounded-2xl mb-4 text-white shadow-premium shadow-amber-500/30 group-hover/item:scale-110 transition-transform">
                   <Calendar size={28} />
                 </div>
@@ -61,7 +67,10 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                   Ver Agenda <ArrowRight size={14} className="ml-1" />
                 </div>
               </div>
-              <div className="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm flex flex-col items-center text-center group/item hover:shadow-premium transition-all hover:-translate-y-1">
+              <div
+                onClick={() => onNavigate('quotes')}
+                className="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm flex flex-col items-center text-center group/item hover:shadow-premium transition-all hover:-translate-y-1 cursor-pointer"
+              >
                 <div className="bg-emerald-500 p-4 rounded-2xl mb-4 text-white shadow-premium shadow-emerald-500/30 group-hover/item:scale-110 transition-transform">
                   <FileText size={28} />
                 </div>
