@@ -80,7 +80,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       addClient, updateClient, deleteClient,
       addJob, updateJob, deleteJob,
       addQuote, updateQuote, deleteQuote,
-      updateSettings
+      updateSettings,
+      logout
     }}>
       {children}
     </AppContext.Provider>

@@ -41,13 +41,14 @@ export default function App() {
     }
   };
 
+  if (!settings.onboardingCompleted) {
+    return <Onboarding />;
+  }
+
   return (
-    <>
-      {!settings.onboardingCompleted && <Onboarding />}
-      <Layout activeTab={activeTab} setActiveTab={setActiveTab}>
-        {renderContent()}
-      </Layout>
-    </>
+    <Layout activeTab={activeTab} setActiveTab={setActiveTab}>
+      {renderContent()}
+    </Layout>
   );
 }
 
