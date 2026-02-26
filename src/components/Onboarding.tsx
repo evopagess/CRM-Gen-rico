@@ -53,7 +53,7 @@ export function Onboarding() {
 
                 <div className="max-w-md w-full py-8 relative z-10 animate-in fade-in zoom-in duration-700">
                     <div className="text-center mb-10">
-                        <div className="inline-flex h-28 w-28 rounded-[2.5rem] bg-white shadow-premium shadow-brand-500/20 mb-8 overflow-hidden p-2 flex items-center justify-center ring-8 ring-white/5 group">
+                        <div className="inline-flex h-32 w-32 mb-8 overflow-hidden flex items-center justify-center group">
                             <img src={logoImg} alt="NEXUS Logo" className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-700" />
                         </div>
                         <h1 className="text-5xl font-black mb-3 tracking-tighter text-white drop-shadow-2xl italic uppercase">

@@ -28,11 +28,11 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
       <header className="md:hidden gradient-brand text-white p-5 flex items-center justify-between shadow-premium z-10">
         <div className="flex items-center gap-3">
           {settings.logo ? (
-            <div className="h-10 w-10 rounded-xl bg-white/20 backdrop-blur-md overflow-hidden p-1 shadow-inner-glow ring-1 ring-white/30">
-              <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[7px]" />
+            <div className="h-10 w-10 overflow-hidden flex items-center justify-center">
+              <img src={settings.logo} alt="Logo" className="h-full w-full object-contain" />
             </div>
           ) : (
-            <div className="h-10 w-10 rounded-xl bg-white/20 backdrop-blur-md overflow-hidden p-1 shadow-inner-glow ring-1 ring-white/30 flex items-center justify-center">
+            <div className="h-10 w-10 overflow-hidden flex items-center justify-center p-1">
               <img src={logoImg} alt="NEXUS Logo" className="h-full w-full object-contain" />
             </div>
           )}
@@ -47,11 +47,11 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
       <aside className="hidden md:flex w-72 flex-col bg-white border-r border-zinc-200/60 shadow-xl relative z-30">
         <div className="p-8 border-b border-zinc-100 flex items-center gap-4">
           {settings.logo ? (
-            <div className="h-12 w-12 rounded-2xl gradient-brand p-1 shadow-premium shadow-brand-500/20 ring-4 ring-brand-50">
-              <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[10px]" />
+            <div className="h-12 w-12 overflow-hidden flex items-center justify-center">
+              <img src={settings.logo} alt="Logo" className="h-full w-full object-contain" />
             </div>
           ) : (
-            <div className="h-12 w-12 rounded-2xl bg-white border border-zinc-100 overflow-hidden p-1 flex items-center justify-center shadow-premium ring-4 ring-zinc-50">
+            <div className="h-12 w-12 overflow-hidden flex items-center justify-center p-1 shadow-sm rounded-xl">
               <img src={logoImg} alt="NEXUS Logo" className="h-full w-full object-contain" />
             </div>
           )}
