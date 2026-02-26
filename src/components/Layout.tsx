@@ -3,6 +3,7 @@ import { Calendar, Users, FileText, Home, Menu, Settings, HelpCircle } from 'luc
 import { cn } from '../utils/cn';
 
 import { useAppStore } from '../context/AppContext';
+import logoImg from '../assets/brand/logo.png';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -31,8 +32,8 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
               <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[7px]" />
             </div>
           ) : (
-            <div className="h-10 w-10 rounded-xl bg-white/20 backdrop-blur-md overflow-hidden p-0 shadow-inner-glow ring-1 ring-white/30 flex items-center justify-center">
-              <img src="/logo.png" alt="NEXUS Logo" className="h-full w-full object-containScale" />
+            <div className="h-10 w-10 rounded-xl bg-white/20 backdrop-blur-md overflow-hidden p-1 shadow-inner-glow ring-1 ring-white/30 flex items-center justify-center">
+              <img src={logoImg} alt="NEXUS Logo" className="h-full w-full object-contain" />
             </div>
           )}
           <div>
@@ -50,8 +51,8 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
               <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[10px]" />
             </div>
           ) : (
-            <div className="h-12 w-12 rounded-2xl bg-zinc-50 border border-zinc-100 overflow-hidden p-0 flex items-center justify-center shadow-inner">
-              <img src="/logo.png" alt="NEXUS Logo" className="h-full w-full object-contain scale-[1.2]" />
+            <div className="h-12 w-12 rounded-2xl bg-white border border-zinc-100 overflow-hidden p-1 flex items-center justify-center shadow-premium ring-4 ring-zinc-50">
+              <img src={logoImg} alt="NEXUS Logo" className="h-full w-full object-contain" />
             </div>
           )}
           <div className="min-w-0">
