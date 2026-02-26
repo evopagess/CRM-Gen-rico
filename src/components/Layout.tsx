@@ -41,7 +41,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
             />
           </div>
           <div>
-            <h1 className="font-poppins font-medium text-xl tracking-tight leading-tight uppercase text-gradient-gold">NEXUS</h1>
+            <h1 className="font-poppins font-semibold text-xl tracking-tight leading-tight uppercase text-gradient-gold">NEXUS</h1>
             <p className="text-[10px] text-brand-100 font-bold truncate max-w-[120px] uppercase tracking-tighter opacity-80">{settings.companyName}</p>
           </div>
         </div>
@@ -64,7 +64,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
             />
           </div>
           <div className="min-w-0">
-            <h1 className="font-poppins font-medium text-2xl text-zinc-900 tracking-tighter leading-tight uppercase text-gradient-gold">NEXUS</h1>
+            <h1 className="font-poppins font-semibold text-2xl text-zinc-900 tracking-tighter leading-tight uppercase text-gradient-gold">NEXUS</h1>
             <p className="text-[10px] text-zinc-400 font-bold truncate uppercase tracking-widest">{settings.companyName}</p>
           </div>
         </div>

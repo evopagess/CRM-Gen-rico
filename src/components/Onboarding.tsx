@@ -55,7 +55,7 @@ export function Onboarding() {
                         <div className="inline-flex h-32 w-32 mb-8 overflow-hidden flex items-center justify-center group">
                             <img src="/logo.png" alt="NEXUS Logo" className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-700" />
                         </div>
-                        <h1 className="text-5xl font-poppins font-medium mb-3 tracking-tighter drop-shadow-2xl uppercase text-gradient-gold">
+                        <h1 className="text-5xl font-poppins font-semibold mb-3 tracking-tighter drop-shadow-2xl uppercase text-gradient-gold">
                             NEXUS
                         </h1>
                         <p className="text-brand-100 font-bold uppercase tracking-[0.2em] text-xs opacity-90 italic">Redefinindo sua gestão profissional</p>
