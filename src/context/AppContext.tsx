@@ -12,6 +12,7 @@ interface AppContextType extends AppState {
   updateQuote: (quote: Quote) => void;
   deleteQuote: (id: string) => void;
   updateSettings: (settings: AppState['settings']) => void;
+  hideJobFromHistory: (id: string) => void;
 }
 
 const defaultState: AppState = {
@@ -22,7 +23,8 @@ const defaultState: AppState = {
     companyName: 'NEXUS',
     logo: '/logo.png',
     onboardingCompleted: false
-  }
+  },
+  hiddenEarningsIds: []
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -68,6 +70,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const updateQuote = (quote: Quote) => setState(s => ({ ...s, quotes: s.quotes.map(q => q.id === quote.id ? quote : q) }));
   const deleteQuote = (id: string) => setState(s => ({ ...s, quotes: s.quotes.filter(q => q.id !== id) }));
   const updateSettings = (settings: AppState['settings']) => setState(s => ({ ...s, settings }));
+  const hideJobFromHistory = (id: string) => setState(s => ({
+    ...s,
+    hiddenEarningsIds: [...(s.hiddenEarningsIds || []), id]
+  }));
 
   return (
     <AppContext.Provider value={{
@@ -75,7 +81,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       addClient, updateClient, deleteClient,
       addJob, updateJob, deleteJob,
       addQuote, updateQuote, deleteQuote,
-      updateSettings
+      updateSettings,
+      hideJobFromHistory
     }}>
       {children}
     </AppContext.Provider>

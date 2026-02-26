@@ -58,4 +58,5 @@ export interface AppState {
   jobs: Job[];
   quotes: Quote[];
   settings: Settings;
+  hiddenEarningsIds: string[];
 }
