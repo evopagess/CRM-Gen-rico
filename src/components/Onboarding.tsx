@@ -53,7 +53,7 @@ export function Onboarding() {
                 <div className="max-w-md w-full py-8 relative z-10 animate-in fade-in zoom-in duration-700">
                     <div className="flex flex-col items-center mb-10">
                         <div className="flex items-center justify-center gap-6 mb-4">
-                            <div className="h-24 w-24 overflow-hidden flex items-center justify-center group">
+                            <div className="h-28 w-28 flex items-center justify-center group">
                                 <img src="/logo.png" alt="NEXUS Logo" className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-700" />
                             </div>
                             <h1 className="text-6xl font-poppins font-semibold tracking-tighter drop-shadow-2xl uppercase text-gradient-gold">
