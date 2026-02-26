@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { AppState, Client, Job, Quote } from '../types';
+import logoImg from '../assets/brand/logo.png';
 
 interface AppContextType extends AppState {
   addClient: (client: Client) => void;
@@ -20,6 +21,7 @@ const defaultState: AppState = {
   quotes: [],
   settings: {
     companyName: 'NEXUS',
+    logo: logoImg,
     onboardingCompleted: false
   }
 };
