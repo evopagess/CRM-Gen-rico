@@ -30,54 +30,56 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, setState] = useState<AppState>(() => {
     const saved = localStorage.getItem('hvac_app_state');
-    const parsed = JSON.parse(saved);
-    // Migration: If logo is missing or looks like an old internal path, use default
-    if (parsed.settings && (!parsed.settings.logo || parsed.settings.logo.includes('src/assets'))) {
-      parsed.settings.logo = '/logo.png';
-    }
-    return {
-      ...defaultState,
-      ...parsed,
-      settings: {
-        ...defaultState.settings,
-        ...(parsed.settings || {})
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        // Migration: If logo is missing or looks like an old internal path, use default
+        if (parsed.settings && (!parsed.settings.logo || parsed.settings.logo.includes('src/assets'))) {
+          parsed.settings.logo = '/logo.png';
+        }
+        return {
+          ...defaultState,
+          ...parsed,
+          settings: {
+            ...defaultState.settings,
+            ...(parsed.settings || {})
+          }
+        };
+      } catch (e) {
+        console.error('Failed to parse state from local storage', e);
       }
-    };
-  } catch (e) {
-    console.error('Failed to parse state from local storage', e);
-  }
-}
-return defaultState;
+    }
+    return defaultState;
   });
 
-useEffect(() => {
-  localStorage.setItem('hvac_app_state', JSON.stringify(state));
-}, [state]);
+  useEffect(() => {
+    localStorage.setItem('hvac_app_state', JSON.stringify(state));
+  }, [state]);
 
-const addClient = (client: Client) => setState(s => ({ ...s, clients: [...s.clients, client] }));
-const updateClient = (client: Client) => setState(s => ({ ...s, clients: s.clients.map(c => c.id === client.id ? client : c) }));
-const deleteClient = (id: string) => setState(s => ({ ...s, clients: s.clients.filter(c => c.id !== id) }));
+  const addClient = (client: Client) => setState(s => ({ ...s, clients: [...s.clients, client] }));
+  const updateClient = (client: Client) => setState(s => ({ ...s, clients: s.clients.map(c => c.id === client.id ? client : c) }));
+  const deleteClient = (id: string) => setState(s => ({ ...s, clients: s.clients.filter(c => c.id !== id) }));
 
-const addJob = (job: Job) => setState(s => ({ ...s, jobs: [...s.jobs, job] }));
-const updateJob = (job: Job) => setState(s => ({ ...s, jobs: s.jobs.map(j => j.id === job.id ? job : j) }));
-const deleteJob = (id: string) => setState(s => ({ ...s, jobs: s.jobs.filter(j => j.id !== id) }));
+  const addJob = (job: Job) => setState(s => ({ ...s, jobs: [...s.jobs, job] }));
+  const updateJob = (job: Job) => setState(s => ({ ...s, jobs: s.jobs.map(j => j.id === job.id ? job : j) }));
+  const deleteJob = (id: string) => setState(s => ({ ...s, jobs: s.jobs.filter(j => j.id !== id) }));
 
-const addQuote = (quote: Quote) => setState(s => ({ ...s, quotes: [...s.quotes, quote] }));
-const updateQuote = (quote: Quote) => setState(s => ({ ...s, quotes: s.quotes.map(q => q.id === quote.id ? quote : q) }));
-const deleteQuote = (id: string) => setState(s => ({ ...s, quotes: s.quotes.filter(q => q.id !== id) }));
-const updateSettings = (settings: AppState['settings']) => setState(s => ({ ...s, settings }));
+  const addQuote = (quote: Quote) => setState(s => ({ ...s, quotes: [...s.quotes, quote] }));
+  const updateQuote = (quote: Quote) => setState(s => ({ ...s, quotes: s.quotes.map(q => q.id === quote.id ? quote : q) }));
+  const deleteQuote = (id: string) => setState(s => ({ ...s, quotes: s.quotes.filter(q => q.id !== id) }));
+  const updateSettings = (settings: AppState['settings']) => setState(s => ({ ...s, settings }));
 
-return (
-  <AppContext.Provider value={{
-    ...state,
-    addClient, updateClient, deleteClient,
-    addJob, updateJob, deleteJob,
-    addQuote, updateQuote, deleteQuote,
-    updateSettings
-  }}>
-    {children}
-  </AppContext.Provider>
-);
+  return (
+    <AppContext.Provider value={{
+      ...state,
+      addClient, updateClient, deleteClient,
+      addJob, updateJob, deleteJob,
+      addQuote, updateQuote, deleteQuote,
+      updateSettings
+    }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 export const useAppStore = () => {
