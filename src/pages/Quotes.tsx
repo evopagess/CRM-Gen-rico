@@ -107,7 +107,7 @@ export function Quotes() {
 
       doc.setFontSize(10);
       doc.setTextColor(100);
-      doc.text('Serviços de Ar-Condicionado', 14, 28);
+      doc.text('Prestação de Serviços', 14, 28);
 
       // Title
       doc.setFontSize(16);
@@ -330,7 +330,7 @@ export function Quotes() {
                   <div className="w-full">
                     <Input
                       label="Descrição"
-                      placeholder="Ex: Limpeza de Ar Condicionado"
+                      placeholder="Ex: Instalação de Ponto de Energia"
                       value={item.description}
                       onChange={e => handleItemChange(item.id, 'description', e.target.value)}
                       required

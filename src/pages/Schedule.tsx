@@ -99,7 +99,7 @@ export function Schedule() {
 
       doc.setFontSize(10);
       doc.setTextColor(100);
-      doc.text('Serviços de Ar-Condicionado', 14, 28);
+      doc.text('Prestação de Serviços', 14, 28);
 
       // Title
       doc.setFontSize(16);
@@ -445,7 +445,7 @@ export function Schedule() {
 
           <Input
             label="Descrição do Serviço"
-            placeholder="Ex: Instalação Split 12000 BTUs"
+            placeholder="Ex: Descrição detalhada do serviço"
             helperText="Resumo do que será feito no local."
             value={newJob.description}
             onChange={e => setNewJob({ ...newJob, description: e.target.value })}
