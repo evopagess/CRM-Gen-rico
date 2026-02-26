@@ -22,7 +22,7 @@ export function Tutorial({ onNavigate }: TutorialProps) {
             title: '1. Configure seu Perfil',
             description: 'Comece definindo o nome da sua empresa e carregando sua logo. Isso deixará seus orçamentos e recibos com um visual profissional.',
             icon: Settings,
-            color: 'bg-blue-100 text-blue-600',
+            color: 'bg-brand-100 text-brand-600',
             action: 'Configurações',
             target: 'settings'
         },
@@ -102,17 +102,20 @@ export function Tutorial({ onNavigate }: TutorialProps) {
                 ))}
             </div>
 
-            <Card className="bg-gradient-to-r from-blue-600 to-blue-700 text-white border-0 shadow-2xl">
-                <CardContent className="p-10 text-center space-y-6">
-                    <div className="flex justify-center gap-6 mb-2">
-                        <Smartphone className="h-12 w-12 text-blue-100" />
-                        <LayoutDashboard className="h-12 w-12 text-blue-100" />
-                        <CheckCircle className="h-12 w-12 text-blue-100" />
+            <Card className="bg-gradient-to-r from-brand-600 to-brand-800 text-white border-0 shadow-premium group overflow-hidden relative">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-white/20 transition-colors" />
+                <CardContent className="p-10 flex flex-col md:flex-row items-center gap-8 relative z-10 text-center md:text-left">
+                    <div className="flex -space-x-4">
+                        <Smartphone className="h-16 w-16 text-brand-100 drop-shadow-lg" />
+                        <LayoutDashboard className="h-16 w-16 text-brand-100 drop-shadow-lg" />
+                        <CheckCircle className="h-16 w-16 text-brand-100 drop-shadow-lg" />
                     </div>
-                    <h2 className="text-3xl font-bold leading-tight">Pronto para começar?</h2>
-                    <p className="text-blue-100 text-lg max-w-xl mx-auto">
-                        O NEXUS foi feito para facilitar sua vida. Organize seus horários, clientes e finanças em um só lugar.
-                    </p>
+                    <div className="flex-1">
+                        <h3 className="text-3xl font-black mb-2 italic tracking-tighter uppercase">Nexus Web App</h3>
+                        <p className="text-brand-100 text-lg max-w-xl font-medium">
+                            Acesse de qualquer lugar, em qualquer dispositivo. Sua oficina na palma da mão.
+                        </p>
+                    </div>
                 </CardContent>
             </Card>
         </div>

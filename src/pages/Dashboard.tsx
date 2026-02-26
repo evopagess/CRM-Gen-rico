@@ -33,42 +33,43 @@ export function Dashboard({ onNavigate }: DashboardProps) {
       </div>
 
       {isNewUser && (
-        <Card className="bg-blue-50 border-blue-200">
-          <CardContent className="p-6">
-            <h2 className="text-xl font-bold text-slate-900 mb-2">Bem-vindo ao NEXUS! 👋</h2>
-            <p className="text-blue-800 mb-6">
-              Parece que você está começando agora. Siga os passos abaixo para organizar seu negócio:
+        <Card className="bg-brand-50 border-brand-100 shadow-premium shadow-brand-500/10 overflow-hidden relative group">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/5 rounded-full blur-3xl group-hover:bg-brand-500/10 transition-colors" />
+          <CardContent className="p-8 relative z-10">
+            <h2 className="text-2xl font-black text-zinc-900 mb-2 tracking-tighter uppercase italic">Bem-vindo ao NEXUS! 👋</h2>
+            <p className="text-brand-700 font-medium mb-8">
+              Pronto para elevar o nível do seu negócio? Comece integrando seu fluxo de trabalho:
             </p>
-            <div className="grid gap-4 md:grid-cols-3">
-              <div className="bg-white p-4 rounded-lg border border-blue-100 shadow-sm flex flex-col items-center text-center">
-                <div className="bg-blue-100 p-3 rounded-full mb-3 text-blue-600">
-                  <UserPlus size={24} />
+            <div className="grid gap-6 md:grid-cols-3">
+              <div className="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm flex flex-col items-center text-center group/item hover:shadow-premium transition-all hover:-translate-y-1">
+                <div className="gradient-brand p-4 rounded-2xl mb-4 text-white shadow-premium shadow-brand-500/30 group-hover/item:scale-110 transition-transform">
+                  <UserPlus size={28} />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1">1. Adicione um Cliente</h3>
-                <p className="text-sm text-gray-500 mb-3">Cadastre os dados do seu primeiro cliente para começar.</p>
-                <span className="text-xs font-medium text-blue-600 mt-auto flex items-center">
-                  Vá para Clientes <ArrowRight size={12} className="ml-1" />
-                </span>
+                <h3 className="font-bold text-zinc-900 mb-2 text-lg">1. Clientes</h3>
+                <p className="text-sm text-zinc-500 mb-6 font-medium">Cadastre e organize sua base de contatos agora.</p>
+                <div className="mt-auto flex items-center text-xs font-black text-brand-600 uppercase tracking-widest group-hover/item:gap-2 transition-all">
+                  Explorar Clientes <ArrowRight size={14} className="ml-1" />
+                </div>
               </div>
-              <div className="bg-white p-4 rounded-lg border border-blue-100 shadow-sm flex flex-col items-center text-center">
-                <div className="bg-blue-100 p-3 rounded-full mb-3 text-blue-600">
-                  <Calendar size={24} />
+              <div className="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm flex flex-col items-center text-center group/item hover:shadow-premium transition-all hover:-translate-y-1">
+                <div className="bg-amber-500 p-4 rounded-2xl mb-4 text-white shadow-premium shadow-amber-500/30 group-hover/item:scale-110 transition-transform">
+                  <Calendar size={28} />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1">2. Agende um Serviço</h3>
-                <p className="text-sm text-gray-500 mb-3">Marque uma instalação ou manutenção na agenda.</p>
-                <span className="text-xs font-medium text-blue-600 mt-auto flex items-center">
-                  Vá para Agenda <ArrowRight size={12} className="ml-1" />
-                </span>
+                <h3 className="font-bold text-zinc-900 mb-2 text-lg">2. Agenda</h3>
+                <p className="text-sm text-zinc-500 mb-6 font-medium">Agende instalações e manutenções com precisão.</p>
+                <div className="mt-auto flex items-center text-xs font-black text-brand-600 uppercase tracking-widest group-hover/item:gap-2 transition-all">
+                  Ver Agenda <ArrowRight size={14} className="ml-1" />
+                </div>
               </div>
-              <div className="bg-white p-4 rounded-lg border border-blue-100 shadow-sm flex flex-col items-center text-center">
-                <div className="bg-blue-100 p-3 rounded-full mb-3 text-blue-600">
-                  <FileText size={24} />
+              <div className="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm flex flex-col items-center text-center group/item hover:shadow-premium transition-all hover:-translate-y-1">
+                <div className="bg-emerald-500 p-4 rounded-2xl mb-4 text-white shadow-premium shadow-emerald-500/30 group-hover/item:scale-110 transition-transform">
+                  <FileText size={28} />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1">3. Crie um Orçamento</h3>
-                <p className="text-sm text-gray-500 mb-3">Gere um PDF profissional para enviar pelo WhatsApp.</p>
-                <span className="text-xs font-medium text-blue-600 mt-auto flex items-center">
-                  Vá para Orçamentos <ArrowRight size={12} className="ml-1" />
-                </span>
+                <h3 className="font-bold text-zinc-900 mb-2 text-lg">3. Orçamentos</h3>
+                <p className="text-sm text-zinc-500 mb-6 font-medium">Gere PDFs profissionais e feche mais negócios.</p>
+                <div className="mt-auto flex items-center text-xs font-black text-brand-600 uppercase tracking-widest group-hover/item:gap-2 transition-all">
+                  Criar Orçamento <ArrowRight size={14} className="ml-1" />
+                </div>
               </div>
             </div>
           </CardContent>
@@ -78,14 +79,16 @@ export function Dashboard({ onNavigate }: DashboardProps) {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500">Serviços Hoje</CardTitle>
+            <CardTitle className="text-xs font-black text-zinc-400 uppercase tracking-widest italic">Serviços Hoje</CardTitle>
             <div className="bg-brand-100 p-1.5 rounded-lg text-brand-600">
               <Calendar className="h-4 w-4" />
             </div>
           </CardHeader>
-          <CardContent className="p-4 sm:p-6">
-            <div className="text-xl sm:text-3xl font-bold text-slate-900 tracking-tight">{todayJobs.length}</div>
-            <p className="text-[10px] sm:text-xs text-slate-500 mt-1 truncate font-medium">
+          <CardContent>
+            <div className="text-xl sm:text-4xl font-black text-zinc-950 tracking-tighter italic">
+              {todayJobs.length}
+            </div>
+            <p className="text-[10px] sm:text-xs text-zinc-400 mt-2 truncate font-bold uppercase tracking-tighter opacity-70">
               {todayJobs.filter(j => j.jobStatus === 'completed').length} concluídos
             </p>
           </CardContent>
@@ -93,16 +96,16 @@ export function Dashboard({ onNavigate }: DashboardProps) {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500">A Receber</CardTitle>
+            <CardTitle className="text-xs font-black text-zinc-400 uppercase tracking-widest italic">A Receber</CardTitle>
             <div className="bg-amber-100 p-1.5 rounded-lg text-amber-600">
               <Clock className="h-4 w-4" />
             </div>
           </CardHeader>
-          <CardContent className="p-4 sm:p-6">
-            <div className="text-xl sm:text-3xl font-bold text-slate-900 tracking-tight truncate">
-              {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(totalPending)}
+          <CardContent>
+            <div className="text-xl sm:text-4xl font-black text-zinc-950 tracking-tighter italic truncate">
+              {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalPending)}
             </div>
-            <p className="text-[10px] sm:text-xs text-slate-500 mt-1 truncate font-medium">
+            <p className="text-[10px] sm:text-xs text-zinc-400 mt-2 truncate font-bold uppercase tracking-tighter opacity-70">
               {pendingPayments.length} pendentes
             </p>
           </CardContent>
@@ -110,31 +113,31 @@ export function Dashboard({ onNavigate }: DashboardProps) {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500">Recebido Hoje</CardTitle>
+            <CardTitle className="text-xs font-black text-zinc-400 uppercase tracking-widest italic">Recebido Hoje</CardTitle>
             <div className="bg-emerald-100 p-1.5 rounded-lg text-emerald-600">
               <DollarSign className="h-4 w-4" />
             </div>
           </CardHeader>
-          <CardContent className="p-4 sm:p-6">
-            <div className="text-xl sm:text-3xl font-bold text-slate-900 tracking-tight truncate">
-              {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(totalEarnedToday)}
+          <CardContent>
+            <div className="text-xl sm:text-4xl font-black text-zinc-950 tracking-tighter italic truncate">
+              {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalEarnedToday)}
             </div>
-            <p className="text-[10px] sm:text-xs text-slate-500 mt-1 truncate font-medium">Total hoje</p>
+            <p className="text-[10px] sm:text-xs text-zinc-400 mt-2 truncate font-bold uppercase tracking-tighter opacity-70">Total hoje</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500">Orçamentos</CardTitle>
+            <CardTitle className="text-xs font-black text-zinc-400 uppercase tracking-widest italic">Orçamentos</CardTitle>
             <div className="bg-purple-100 p-1.5 rounded-lg text-purple-600">
               <CheckCircle className="h-4 w-4" />
             </div>
           </CardHeader>
-          <CardContent className="p-4 sm:p-6">
-            <div className="text-xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+          <CardContent>
+            <div className="text-xl sm:text-4xl font-black text-zinc-950 tracking-tighter italic">
               {quotes.filter(q => q.status === 'active').length}
             </div>
-            <p className="text-[10px] sm:text-xs text-slate-500 mt-1 truncate font-medium">Ativos agora</p>
+            <p className="text-[10px] sm:text-xs text-zinc-400 mt-2 truncate font-bold uppercase tracking-tighter opacity-70">Ativos agora</p>
           </CardContent>
         </Card>
       </div>
@@ -170,26 +173,26 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                     <div className="relative inline-flex items-center" onClick={(e) => e.stopPropagation()}>
                       <select
                         className={cn(
-                          "appearance-none pl-2.5 pr-7 py-0.5 rounded-full text-xs font-semibold cursor-pointer outline-none focus:ring-2 focus:ring-blue-500 border-0",
-                          job.jobStatus === 'completed' ? "bg-green-100 text-green-800" :
-                            job.jobStatus === 'in_progress' ? "bg-yellow-100 text-yellow-800" :
-                              job.jobStatus === 'canceled' ? "bg-red-100 text-red-800" :
-                                "bg-blue-100 text-blue-800"
+                          "appearance-none pl-3 pr-8 py-1 rounded-xl text-[10px] font-black uppercase tracking-widest cursor-pointer outline-none focus:ring-2 focus:ring-brand-500 border-0 transition-all active:scale-95",
+                          job.jobStatus === 'completed' ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200" :
+                            job.jobStatus === 'in_progress' ? "bg-amber-50 text-amber-700 ring-1 ring-amber-200" :
+                              job.jobStatus === 'canceled' ? "bg-rose-50 text-rose-700 ring-1 ring-rose-200" :
+                                "bg-brand-50 text-brand-700 ring-1 ring-brand-200"
                         )}
                         value={job.jobStatus}
                         onChange={(e) => updateJob({ ...job, jobStatus: e.target.value as JobStatus })}
                       >
                         <option value="scheduled">Agendado</option>
-                        <option value="in_progress">Em andamento</option>
+                        <option value="in_progress">Andamento</option>
                         <option value="completed">Concluído</option>
                         <option value="canceled">Cancelado</option>
                       </select>
                       <ChevronDown className={cn(
-                        "absolute right-2 h-3 w-3 pointer-events-none",
-                        job.jobStatus === 'completed' ? "text-green-800" :
-                          job.jobStatus === 'in_progress' ? "text-yellow-800" :
-                            job.jobStatus === 'canceled' ? "text-red-800" :
-                              "text-blue-800"
+                        "absolute right-2.5 h-3.5 w-3.5 pointer-events-none",
+                        job.jobStatus === 'completed' ? "text-emerald-700" :
+                          job.jobStatus === 'in_progress' ? "text-amber-700" :
+                            job.jobStatus === 'canceled' ? "text-rose-700" :
+                              "text-brand-700"
                       )} />
                     </div>
                   </div>

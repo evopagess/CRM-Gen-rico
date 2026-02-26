@@ -22,41 +22,41 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
   ];
 
   return (
-    <div className="flex h-[100dvh] w-full overflow-hidden bg-slate-50 flex-col md:flex-row">
+    <div className="flex h-[100dvh] w-full overflow-hidden bg-zinc-50 flex-col md:flex-row">
       {/* Mobile Header */}
-      <header className="md:hidden bg-brand-700 text-white p-4 flex items-center justify-between shadow-premium z-10">
-        <div className="flex items-center gap-2">
+      <header className="md:hidden gradient-brand text-white p-5 flex items-center justify-between shadow-premium z-10">
+        <div className="flex items-center gap-3">
           {settings.logo ? (
-            <div className="h-8 w-8 rounded-lg bg-white overflow-hidden p-0.5 shadow-inner-glow">
-              <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[5px]" />
+            <div className="h-10 w-10 rounded-xl bg-white/20 backdrop-blur-md overflow-hidden p-1 shadow-inner-glow ring-1 ring-white/30">
+              <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[7px]" />
             </div>
           ) : (
-            <div className="h-8 w-8 rounded-lg bg-white overflow-hidden p-0 shadow-inner-glow">
+            <div className="h-10 w-10 rounded-xl bg-white/20 backdrop-blur-md overflow-hidden p-0 shadow-inner-glow ring-1 ring-white/30 flex items-center justify-center">
               <img src="/logo.png" alt="NEXUS Logo" className="h-full w-full object-containScale" />
             </div>
           )}
           <div>
-            <h1 className="font-bold text-lg tracking-tight leading-tight text-white">NEXUS</h1>
-            <p className="text-[10px] text-brand-100 font-medium truncate max-w-[120px]">{settings.companyName}</p>
+            <h1 className="font-bold text-xl tracking-tight leading-tight text-white uppercase italic">NEXUS</h1>
+            <p className="text-[10px] text-brand-100 font-bold truncate max-w-[120px] uppercase tracking-tighter opacity-80">{settings.companyName}</p>
           </div>
         </div>
       </header>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex w-64 flex-col bg-white border-r border-slate-200/60 shadow-sm">
-        <div className="p-6 border-b border-slate-100 flex items-center gap-3">
+      <aside className="hidden md:flex w-72 flex-col bg-white border-r border-zinc-200/60 shadow-xl relative z-30">
+        <div className="p-8 border-b border-zinc-100 flex items-center gap-4">
           {settings.logo ? (
-            <div className="h-10 w-10 rounded-xl bg-brand-50 border border-brand-100 overflow-hidden p-1">
-              <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[7px]" />
+            <div className="h-12 w-12 rounded-2xl gradient-brand p-1 shadow-premium shadow-brand-500/20 ring-4 ring-brand-50">
+              <img src={settings.logo} alt="Logo" className="h-full w-full object-cover rounded-[10px]" />
             </div>
           ) : (
-            <div className="h-10 w-10 rounded-xl bg-white border border-slate-100 overflow-hidden p-0 flex items-center justify-center shadow-sm">
+            <div className="h-12 w-12 rounded-2xl bg-zinc-50 border border-zinc-100 overflow-hidden p-0 flex items-center justify-center shadow-inner">
               <img src="/logo.png" alt="NEXUS Logo" className="h-full w-full object-contain scale-[1.2]" />
             </div>
           )}
           <div className="min-w-0">
-            <h1 className="font-bold text-xl text-slate-900 tracking-tight leading-tight">NEXUS</h1>
-            <p className="text-[10px] text-slate-500 font-semibold truncate uppercase tracking-wider">{settings.companyName}</p>
+            <h1 className="font-black text-2xl text-zinc-900 tracking-tighter leading-tight italic uppercase">NEXUS</h1>
+            <p className="text-[10px] text-zinc-400 font-bold truncate uppercase tracking-widest">{settings.companyName}</p>
           </div>
         </div>
         <nav className="flex-1 p-4 space-y-1">
@@ -70,11 +70,11 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
                 className={cn(
                   "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors",
                   isActive
-                    ? "bg-brand-50 text-brand-700 shadow-sm shadow-brand-100/50"
-                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                    ? "bg-brand-50 text-brand-700 shadow-premium shadow-brand-500/10 ring-1 ring-brand-200/50"
+                    : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900"
                 )}
               >
-                <Icon size={18} className={isActive ? "text-brand-600" : "text-slate-400"} />
+                <Icon size={20} className={isActive ? "text-brand-600" : "text-zinc-400"} />
                 {item.label}
               </button>
             );
@@ -99,12 +99,12 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
               key={item.id}
               onClick={() => setActiveTab(item.id)}
               className={cn(
-                "flex flex-col items-center justify-center flex-1 h-full rounded-xl transition-all active:scale-90",
-                isActive ? "text-brand-600 bg-brand-50/50 shadow-sm" : "text-slate-500"
+                "flex flex-col items-center justify-center flex-1 h-full rounded-2xl transition-all active:scale-90",
+                isActive ? "text-brand-600 bg-brand-50/50 shadow-premium shadow-brand-500/5" : "text-zinc-400"
               )}
             >
-              <Icon size={20} className={cn(isActive ? "text-brand-600" : "text-slate-400")} />
-              <span className="text-[9px] font-bold mt-1 uppercase tracking-widest">{item.label.split(' ')[0]}</span>
+              <Icon size={24} className={cn(isActive ? "text-brand-600" : "text-zinc-400")} />
+              <span className="text-[10px] font-black mt-1 uppercase tracking-tighter">{item.label.split(' ')[0]}</span>
             </button>
           );
         })}

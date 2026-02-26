@@ -12,13 +12,13 @@ export function Badge({ className, variant = 'default', ...props }: BadgeProps) 
   return (
     <div
       className={cn(
-        'inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] sm:text-xs font-semibold tracking-wider uppercase transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500',
+        'inline-flex items-center rounded-full px-3 py-1 text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 ring-1 ring-inset',
         {
-          'bg-slate-100 text-slate-800': variant === 'default',
-          'bg-emerald-100 text-emerald-800': variant === 'success',
-          'bg-amber-100 text-amber-800': variant === 'warning',
-          'bg-rose-100 text-rose-800': variant === 'danger',
-          'bg-brand-100 text-brand-800': variant === 'info',
+          'bg-zinc-100 text-zinc-800 ring-zinc-200': variant === 'default',
+          'bg-emerald-50 text-emerald-700 ring-emerald-200': variant === 'success',
+          'bg-amber-50 text-amber-700 ring-amber-200': variant === 'warning',
+          'bg-rose-50 text-rose-700 ring-rose-200': variant === 'danger',
+          'bg-brand-50 text-brand-700 ring-brand-200': variant === 'info',
         },
         className
       )}

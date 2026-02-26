@@ -91,17 +91,17 @@ export function Quotes() {
         try {
           doc.addImage(settings.logo, 'PNG', 14, 12, 12, 12);
           doc.setFontSize(20);
-          doc.setTextColor(37, 99, 235);
+          doc.setTextColor(139, 92, 246);
           doc.text(settings.companyName, 30, 22);
         } catch (e) {
           console.error('Error adding logo to PDF', e);
           doc.setFontSize(20);
-          doc.setTextColor(37, 99, 235);
+          doc.setTextColor(139, 92, 246);
           doc.text(settings.companyName, 14, 22);
         }
       } else {
         doc.setFontSize(20);
-        doc.setTextColor(37, 99, 235); // blue-600
+        doc.setTextColor(139, 92, 246); // brand-500 violet
         doc.text(settings.companyName, 14, 22);
       }
 
@@ -151,7 +151,7 @@ export function Quotes() {
         head: [tableColumn],
         body: tableRows,
         theme: 'striped',
-        headStyles: { fillColor: [37, 99, 235] },
+        headStyles: { fillColor: [124, 58, 237] },
         styles: { fontSize: 10 },
         margin: { left: 20, right: 20 },
         columnStyles: {
@@ -207,47 +207,49 @@ export function Quotes() {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {quotes.length === 0 ? (
-          <div className="col-span-full text-center py-12 text-gray-500 bg-white rounded-xl border border-gray-200">
-            <FileText className="mx-auto h-12 w-12 text-gray-300 mb-4" />
-            <p className="text-lg font-medium text-gray-900">Nenhum orçamento criado</p>
-            <p className="text-sm mt-1">Crie seu primeiro orçamento para enviar aos clientes.</p>
+          <div className="col-span-full text-center py-20 text-zinc-500 bg-white rounded-3xl border border-zinc-200 shadow-premium">
+            <div className="bg-zinc-50 h-20 w-20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <FileText className="h-10 w-10 text-zinc-300" />
+            </div>
+            <p className="text-xl font-bold text-zinc-900 tracking-tight">Nenhum orçamento criado</p>
+            <p className="text-sm mt-2 font-medium">Capture sua primeira oportunidade clicando em "Novo Orçamento".</p>
           </div>
         ) : (
           quotes.map(quote => {
             const client = clients.find(c => c.id === quote.clientId);
 
             return (
-              <Card key={quote.id} className="flex flex-col justify-between">
-                <CardHeader className="pb-4">
+              <Card key={quote.id} className="flex flex-col justify-between group hover:-translate-y-1 transition-all">
+                <CardHeader className="pb-4 relative">
                   <div className="flex justify-between items-start">
                     <Badge variant={quote.status === 'completed' ? 'success' : 'info'}>
-                      {quote.status === 'completed' ? 'CONCLUÍDO' : 'ATIVO'}
+                      {quote.status === 'completed' ? 'FECHADO' : 'ATIVO'}
                     </Badge>
-                    <span className="text-xs text-gray-500 font-medium">
-                      #{quote.id.substring(0, 6).toUpperCase()}
+                    <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest">
+                      #{quote.id.substring(0, 6)}
                     </span>
                   </div>
-                  <CardTitle className="mt-4 text-xl">
+                  <CardTitle className="mt-6 text-3xl font-black italic text-zinc-900 tracking-tighter">
                     {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(quote.total)}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pb-4">
-                  <div className="space-y-2">
-                    <div className="flex items-center text-sm text-gray-600">
-                      <User className="mr-2 h-4 w-4 text-gray-400" />
-                      <span className="font-medium truncate">{client?.name || 'Cliente Removido'}</span>
+                <CardContent className="pb-6">
+                  <div className="space-y-3">
+                    <div className="flex items-center text-sm text-zinc-600 font-bold">
+                      <User className="mr-3 h-4 w-4 text-brand-500" />
+                      <span className="truncate">{client?.name || 'Cliente Removido'}</span>
                     </div>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Calendar className="mr-2 h-4 w-4 text-gray-400" />
-                      <span>{format(parseISO(quote.date), "dd 'de' MMMM, yyyy", { locale: ptBR })}</span>
+                    <div className="flex items-center text-sm text-zinc-500 font-medium">
+                      <Calendar className="mr-3 h-4 w-4 text-zinc-400" />
+                      <span>{format(parseISO(quote.date), "dd 'de' MMM, yyyy", { locale: ptBR })}</span>
                     </div>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <FileText className="mr-2 h-4 w-4 text-gray-400" />
+                    <div className="flex items-center text-[10px] text-zinc-400 font-black uppercase tracking-widest bg-zinc-50 w-fit px-3 py-1 rounded-full">
+                      <FileText className="mr-2 h-3 w-3" />
                       <span>{quote.items.length} {quote.items.length === 1 ? 'item' : 'itens'}</span>
                     </div>
                   </div>
                 </CardContent>
-                <div className="p-4 border-t border-gray-100 bg-gray-50 flex justify-between items-center rounded-b-xl">
+                <div className="p-4 pt-0 bg-transparent flex justify-between items-center gap-2">
                   <div className="flex items-center gap-2">
                     <Button
                       variant="ghost"
@@ -368,10 +370,11 @@ export function Quotes() {
               ))}
             </div>
 
-            <div className="mt-4 flex justify-end">
-              <div className="bg-blue-50 text-blue-900 px-4 py-3 rounded-lg border border-blue-100 flex items-center gap-4">
-                <span className="text-sm font-medium">Total Estimado:</span>
-                <span className="text-xl font-bold">
+            <div className="mt-8 flex justify-end">
+              <div className="gradient-brand text-white px-8 py-5 rounded-[2rem] shadow-premium shadow-brand-500/20 flex items-center gap-6 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform" />
+                <span className="text-xs font-black uppercase tracking-widest opacity-80 relative z-10">Total Estimado</span>
+                <span className="text-3xl font-black italic tracking-tighter relative z-10">
                   {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calculateTotal(newQuote.items))}
                 </span>
               </div>

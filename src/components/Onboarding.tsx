@@ -40,8 +40,8 @@ export function Onboarding() {
             <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-4 py-8">
                 {/* Animated Tech Background Elements */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse" />
-                    <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 rounded-full blur-[150px] animate-pulse transition-duration-3000" />
+                    <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-600/30 rounded-full blur-[140px] animate-pulse" />
+                    <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-400/20 rounded-full blur-[120px]" />
                     <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-blue-400/10 rounded-full blur-[100px]" />
 
                     {/* Subtle Grid Line Pattern */}
@@ -52,13 +52,13 @@ export function Onboarding() {
 
                 <div className="max-w-md w-full py-8 relative z-10 animate-in fade-in zoom-in duration-700">
                     <div className="text-center mb-10">
-                        <div className="inline-flex h-24 w-24 rounded-2xl bg-white shadow-[0_0_40px_rgba(59,130,246,0.3)] mb-6 overflow-hidden p-0 flex items-center justify-center ring-4 ring-white/10">
-                            <img src="/logo.png" alt="NEXUS Logo" className="h-full w-full object-contain scale-[1.3]" />
+                        <div className="inline-flex h-28 w-28 rounded-[2.5rem] bg-white shadow-premium shadow-brand-500/20 mb-8 overflow-hidden p-2 flex items-center justify-center ring-8 ring-white/5 group">
+                            <img src="/logo.png" alt="NEXUS Logo" className="h-full w-full object-contain scale-[1.3] group-hover:scale-150 transition-transform duration-700" />
                         </div>
-                        <h1 className="text-4xl font-extrabold mb-2 tracking-tight text-white drop-shadow-md">
-                            Bem-vindo ao <span className="text-brand-400">NEXUS!</span>
+                        <h1 className="text-5xl font-black mb-3 tracking-tighter text-white drop-shadow-2xl italic uppercase">
+                            NEXUS
                         </h1>
-                        <p className="text-blue-100/80 italic font-medium">"Ponto de início para elevar seu negócio de climatização"</p>
+                        <p className="text-brand-100 font-bold uppercase tracking-[0.2em] text-xs opacity-90 italic">Redefinindo sua gestão profissional</p>
                     </div>
 
                     <form onSubmit={handleComplete}>

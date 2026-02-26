@@ -83,17 +83,17 @@ export function Schedule() {
         try {
           doc.addImage(settings.logo, 'PNG', 14, 12, 12, 12);
           doc.setFontSize(20);
-          doc.setTextColor(37, 99, 235);
+          doc.setTextColor(139, 92, 246);
           doc.text(settings.companyName, 30, 22);
         } catch (e) {
           console.error('Error adding logo to PDF', e);
           doc.setFontSize(20);
-          doc.setTextColor(37, 99, 235);
+          doc.setTextColor(139, 92, 246);
           doc.text(settings.companyName, 14, 22);
         }
       } else {
         doc.setFontSize(20);
-        doc.setTextColor(37, 99, 235); // blue-600
+        doc.setTextColor(139, 92, 246); // brand-500 violet
         doc.text(settings.companyName, 14, 22);
       }
 
@@ -145,7 +145,7 @@ export function Schedule() {
         head: [tableColumn],
         body: tableRows,
         theme: 'striped',
-        headStyles: { fillColor: [37, 99, 235] },
+        headStyles: { fillColor: [124, 58, 237] },
         styles: { fontSize: 10 },
         margin: { left: 20, right: 20 },
         columnStyles: {
@@ -252,39 +252,39 @@ export function Schedule() {
               <Card key={job.id} className="overflow-hidden">
                 <div className="flex flex-col md:flex-row">
                   <div className={cn(
-                    "p-4 sm:w-48 flex flex-row sm:flex-col items-center sm:items-start justify-between sm:justify-center border-b sm:border-b-0 sm:border-r transition-colors",
-                    job.jobStatus === 'completed' ? "bg-green-50 border-green-100" :
-                      job.jobStatus === 'in_progress' ? "bg-yellow-50 border-yellow-100" :
-                        job.jobStatus === 'canceled' ? "bg-red-50 border-red-100" :
-                          "bg-blue-50 border-blue-100"
+                    "p-6 sm:w-56 flex flex-row sm:flex-col items-center sm:items-start justify-between sm:justify-center border-b sm:border-b-0 sm:border-r border-zinc-100 transition-colors",
+                    job.jobStatus === 'completed' ? "bg-emerald-50" :
+                      job.jobStatus === 'in_progress' ? "bg-amber-50" :
+                        job.jobStatus === 'canceled' ? "bg-rose-50" :
+                          "bg-brand-50"
                   )}>
                     <div className="flex sm:flex-col items-center sm:items-start gap-3 sm:gap-1">
                       <div className="text-center sm:text-left">
                         <p className={cn(
-                          "text-[10px] sm:text-sm font-semibold uppercase tracking-wider",
-                          job.jobStatus === 'completed' ? "text-green-800" :
-                            job.jobStatus === 'in_progress' ? "text-yellow-800" :
-                              job.jobStatus === 'canceled' ? "text-red-800" :
-                                "text-blue-800"
+                          "text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] mb-1",
+                          job.jobStatus === 'completed' ? "text-emerald-700" :
+                            job.jobStatus === 'in_progress' ? "text-amber-700" :
+                              job.jobStatus === 'canceled' ? "text-rose-700" :
+                                "text-brand-700"
                         )}>
                           {format(jobDate, "MMM", { locale: ptBR })}
                         </p>
                         <p className={cn(
-                          "text-2xl sm:text-3xl font-bold leading-none sm:my-1",
-                          job.jobStatus === 'completed' ? "text-green-900" :
-                            job.jobStatus === 'in_progress' ? "text-yellow-900" :
-                              job.jobStatus === 'canceled' ? "text-red-900" :
-                                "text-blue-900"
+                          "text-3xl sm:text-5xl font-black tracking-tighter leading-none italic",
+                          job.jobStatus === 'completed' ? "text-emerald-900" :
+                            job.jobStatus === 'in_progress' ? "text-amber-900" :
+                              job.jobStatus === 'canceled' ? "text-rose-900" :
+                                "text-brand-950"
                         )}>
                           {format(jobDate, "dd")}
                         </p>
                       </div>
                       <p className={cn(
-                        "hidden sm:block text-xs font-medium",
-                        job.jobStatus === 'completed' ? "text-green-700" :
-                          job.jobStatus === 'in_progress' ? "text-yellow-700" :
-                            job.jobStatus === 'canceled' ? "text-red-700" :
-                              "text-blue-700"
+                        "hidden sm:block text-[10px] font-black uppercase tracking-widest mt-2 opacity-60",
+                        job.jobStatus === 'completed' ? "text-emerald-700" :
+                          job.jobStatus === 'in_progress' ? "text-amber-700" :
+                            job.jobStatus === 'canceled' ? "text-rose-700" :
+                              "text-brand-700"
                       )}>
                         {format(jobDate, "EEEE", { locale: ptBR })}
                       </p>
@@ -316,11 +316,11 @@ export function Schedule() {
                           <div className="relative inline-flex items-center">
                             <select
                               className={cn(
-                                "appearance-none pl-2.5 pr-7 py-0.5 rounded-full text-xs font-semibold cursor-pointer outline-none focus:ring-2 focus:ring-blue-500 border-0",
-                                job.jobStatus === 'completed' ? "bg-green-100 text-green-800" :
-                                  job.jobStatus === 'in_progress' ? "bg-yellow-100 text-yellow-800" :
-                                    job.jobStatus === 'canceled' ? "bg-red-100 text-red-800" :
-                                      "bg-blue-100 text-blue-800"
+                                "appearance-none pl-3 pr-8 py-1 rounded-xl text-[10px] font-black uppercase tracking-widest cursor-pointer outline-none focus:ring-2 focus:ring-brand-500 border-0 transition-all active:scale-95 shadow-sm",
+                                job.jobStatus === 'completed' ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200" :
+                                  job.jobStatus === 'in_progress' ? "bg-amber-50 text-amber-700 ring-1 ring-amber-200" :
+                                    job.jobStatus === 'canceled' ? "bg-rose-50 text-rose-700 ring-1 ring-rose-200" :
+                                      "bg-brand-50 text-brand-700 ring-1 ring-brand-200"
                               )}
                               value={job.jobStatus}
                               onChange={(e) => updateJob({ ...job, jobStatus: e.target.value as JobStatus })}
@@ -331,11 +331,11 @@ export function Schedule() {
                               <option value="canceled">Cancelado</option>
                             </select>
                             <ChevronDown className={cn(
-                              "absolute right-2 h-3 w-3 pointer-events-none",
-                              job.jobStatus === 'completed' ? "text-green-800" :
-                                job.jobStatus === 'in_progress' ? "text-yellow-800" :
-                                  job.jobStatus === 'canceled' ? "text-red-800" :
-                                    "text-blue-800"
+                              "absolute right-2.5 h-3.5 w-3.5 pointer-events-none",
+                              job.jobStatus === 'completed' ? "text-emerald-700" :
+                                job.jobStatus === 'in_progress' ? "text-amber-700" :
+                                  job.jobStatus === 'canceled' ? "text-rose-700" :
+                                    "text-brand-700"
                             )} />
                           </div>
                         </div>

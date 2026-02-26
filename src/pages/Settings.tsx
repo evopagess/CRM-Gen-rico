@@ -38,7 +38,7 @@ export function Settings() {
                     <Card>
                         <CardHeader>
                             <div className="flex items-center gap-2">
-                                <Building2 className="h-5 w-5 text-blue-600" />
+                                <Building2 className="h-5 w-5 text-brand-600" />
                                 <CardTitle>Perfil da Empresa</CardTitle>
                             </div>
                             <CardDescription>
@@ -66,8 +66,8 @@ export function Settings() {
                                         )}
                                     </div>
                                     <div className="flex-1 space-y-3">
-                                        <label className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none">
-                                            <span className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+                                        <label className="relative cursor-pointer bg-white rounded-md font-bold text-brand-600 hover:text-brand-500 focus-within:outline-none">
+                                            <span className="inline-flex items-center px-4 py-2 border border-zinc-300 shadow-sm text-sm font-bold rounded-xl text-zinc-700 bg-white hover:bg-zinc-50 transition-all hover:border-brand-200 active:scale-95">
                                                 <Upload className="mr-2 h-4 w-4" /> Alterar Imagem
                                             </span>
                                             <input type="file" className="sr-only" accept="image/*" onChange={handleLogoChange} />
