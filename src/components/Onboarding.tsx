@@ -36,25 +36,25 @@ export function Onboarding() {
     };
 
     return (
-        <div className="fixed inset-0 bg-black z-[100] overflow-y-auto overflow-x-hidden">
+        <div className="fixed inset-0 bg-[#050a1f] z-[100] overflow-y-auto overflow-x-hidden">
             <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-4 py-8">
                 {/* Animated Tech Background Elements */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-600/20 rounded-full blur-[140px] animate-pulse" />
-                    <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-400/10 rounded-full blur-[120px]" />
-                    <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-blue-400/5 rounded-full blur-[100px]" />
+                    <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-600/30 rounded-full blur-[140px] animate-pulse" />
+                    <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-400/20 rounded-full blur-[120px]" />
+                    <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-blue-400/10 rounded-full blur-[100px]" />
 
                     {/* Subtle Grid Line Pattern */}
-                    <div className="absolute inset-0 opacity-[0.02]"
+                    <div className="absolute inset-0 opacity-[0.03]"
                         style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}
                     />
                 </div>
 
                 <div className="max-w-md w-full py-8 relative z-10 animate-in fade-in zoom-in duration-700">
                     <div className="flex flex-col items-center mb-12">
-                        <div className="flex items-center justify-center mb-6">
-                            <div className="h-48 w-48 flex items-center justify-center group transform hover:scale-105 transition-transform duration-500">
-                                <img src="/loom_logo.png" alt="LOOM Logo" className="h-full w-full object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]" />
+                        <div className="flex items-center justify-center mb-8">
+                            <div className="max-w-[200px] sm:max-w-[240px] w-full flex items-center justify-center group pointer-events-none">
+                                <img src="/loom_logo.png" alt="LOOM Logo" className="w-full h-auto object-contain" />
                             </div>
                         </div>
                         <p className="text-brand-100 font-bold uppercase tracking-[0.3em] text-[10px] sm:text-xs opacity-80 italic text-center">Redefinindo sua gestão profissional</p>
