@@ -89,10 +89,10 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
         </nav>
 
         {/* Bottom Section - Branding */}
-        <div className="p-6 border-t border-zinc-100 bg-zinc-50/30">
-          <div className="flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
-            <div className="h-8 w-8 overflow-hidden flex items-center justify-center shrink-0">
-              <img src="/loom_logo.png" alt="Logo" className="h-full w-full object-contain" />
+        <div className="p-6 border-t border-zinc-100 bg-zinc-50/10">
+          <div className="flex items-center justify-center transition-all duration-300 hover:scale-105">
+            <div className="h-10 w-full max-w-[120px] px-3 py-1.5 rounded-xl bg-zinc-900 shadow-lg shadow-zinc-900/10 flex items-center justify-center">
+              <img src="/loom_logo.png" alt="Logo" className="h-full w-full object-contain brightness-0 invert" />
             </div>
           </div>
         </div>
