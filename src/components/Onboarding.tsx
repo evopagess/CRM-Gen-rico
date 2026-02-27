@@ -103,7 +103,7 @@ export function Onboarding() {
                                                 {logo ? (
                                                     <img src={logo} alt="Preview" className="h-full w-full object-cover" />
                                                 ) : (
-                                                    <Building2 className="h-8 w-8 text-gray-400" />
+                                                    <img src="/loom_logo.png" alt="LOOM" className="h-full w-full object-contain p-2" />
                                                 )}
                                             </div>
                                             <div className="flex-1">
