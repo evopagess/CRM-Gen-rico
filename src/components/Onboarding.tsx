@@ -54,10 +54,10 @@ export function Onboarding() {
                     <div className="flex flex-col items-center mb-10">
                         <div className="flex items-center justify-center gap-6 mb-4">
                             <div className="h-28 w-28 flex items-center justify-center group">
-                                <img src="/logo.png" alt="NEXUS Logo" className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-700" />
+                                <img src="/loom_logo.png" alt="LOOM Logo" className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-700" />
                             </div>
                             <h1 className="text-6xl font-poppins font-semibold tracking-tighter drop-shadow-2xl uppercase text-gradient-gold">
-                                NEXUS
+                                LOOM
                             </h1>
                         </div>
                         <p className="text-brand-100 font-bold uppercase tracking-[0.2em] text-xs opacity-90 italic">Redefinindo sua gestão profissional</p>

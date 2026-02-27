@@ -19,7 +19,7 @@ const defaultState: AppState = {
   jobs: [],
   quotes: [],
   settings: {
-    companyName: 'NEXUS',
+    companyName: 'LOOM',
     logo: '/logo.png',
     onboardingCompleted: false
   }
