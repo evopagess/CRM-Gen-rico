@@ -19,7 +19,7 @@ const defaultState: AppState = {
   jobs: [],
   quotes: [],
   settings: {
-    companyName: 'LOOM',
+    companyName: '',
     logo: '/logo.png',
     onboardingCompleted: false
   }

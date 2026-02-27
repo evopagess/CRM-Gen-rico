@@ -61,7 +61,7 @@ export function Earnings() {
                         </div>
                         <div className="flex items-center gap-2 mt-2 text-emerald-600 font-bold text-[10px] uppercase tracking-tighter">
                             <DollarSign size={12} />
-                            Total acumulado no LOOM
+                            Total acumulado
                         </div>
                     </CardContent>
                 </Card>

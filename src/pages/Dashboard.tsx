@@ -39,7 +39,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         <Card className="bg-brand-50 border-brand-100 shadow-premium shadow-brand-500/10 overflow-hidden relative group">
           <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/5 rounded-full blur-3xl group-hover:bg-brand-500/10 transition-colors" />
           <CardContent className="p-8 relative z-10">
-            <h2 className="text-2xl font-black text-zinc-900 mb-2 tracking-tighter uppercase italic">Bem-vindo ao LOOM! 👋</h2>
+            <h2 className="text-2xl font-black text-zinc-900 mb-2 tracking-tighter uppercase italic">Bem-vindo! 👋</h2>
             <p className="text-brand-700 font-medium mb-8">
               Pronto para elevar o nível do seu negócio? Comece integrando seu fluxo de trabalho:
             </p>

@@ -54,7 +54,7 @@ export function Onboarding() {
                     <div className="flex flex-col items-center mb-12">
                         <div className="flex items-center justify-center mb-8">
                             <div className="max-w-[200px] sm:max-w-[240px] w-full flex items-center justify-center group pointer-events-none">
-                                <img src="/loom_logo.png" alt="LOOM Logo" className="w-full h-auto object-contain" />
+                                <img src="/loom_logo.png" alt="Logo" className="w-full h-auto object-contain" />
                             </div>
                         </div>
                         <p className="text-brand-100 font-bold uppercase tracking-[0.3em] text-[10px] sm:text-xs opacity-80 italic text-center">Redefinindo sua gestão profissional</p>
@@ -103,7 +103,7 @@ export function Onboarding() {
                                                 {logo ? (
                                                     <img src={logo} alt="Preview" className="h-full w-full object-cover" />
                                                 ) : (
-                                                    <img src="/loom_logo.png" alt="LOOM" className="h-full w-full object-contain p-2" />
+                                                    <img src="/loom_logo.png" alt="Logo" className="h-full w-full object-contain p-2" />
                                                 )}
                                             </div>
                                             <div className="flex-1">

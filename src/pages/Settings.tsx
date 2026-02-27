@@ -48,10 +48,10 @@ export function Settings() {
                         <CardContent className="space-y-4">
                             <Input
                                 label="Nome da Empresa / Profissional"
-                                placeholder="Ex: LOOM Serviços"
+                                placeholder="Ex: Minha Empresa"
                                 value={companyName}
                                 onChange={(e) => setCompanyName(e.target.value)}
-                                helperText="Este nome substituirá o 'LOOM' no cabeçalho dos PDFs."
+                                helperText="Este nome substituirá o cabeçalho padrão nos PDFs."
                                 required
                             />
 

@@ -88,13 +88,12 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
           })}
         </nav>
 
-        {/* Bottom Section - LOOM Branding */}
+        {/* Bottom Section - Branding */}
         <div className="p-6 border-t border-zinc-100 bg-zinc-50/30">
           <div className="flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
             <div className="h-8 w-8 overflow-hidden flex items-center justify-center shrink-0">
-              <img src="/loom_logo.png" alt="LOOM" className="h-full w-full object-contain" />
+              <img src="/loom_logo.png" alt="Logo" className="h-full w-full object-contain" />
             </div>
-            <span className="text-[16px] font-poppins font-semibold text-gradient-gold uppercase tracking-tighter leading-none">LOOM</span>
           </div>
         </div>
       </aside>
