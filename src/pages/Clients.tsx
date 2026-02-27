@@ -4,7 +4,7 @@ import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import { Modal } from '../components/ui/Modal';
-import { Plus, Search, Phone, MapPin, User, Edit2, Trash2, AlertCircle } from 'lucide-react';
+import { Plus, Search, Phone, MapPin, User, Edit2, Trash2, AlertCircle, ArrowUpDown } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import { Client } from '../types';
 
@@ -15,6 +15,7 @@ export function Clients() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [clientToDelete, setClientToDelete] = useState<string | null>(null);
   const [editingClient, setEditingClient] = useState<Client | null>(null);
+  const [sortBy, setSortBy] = useState<'alphabetical' | 'recent'>('alphabetical');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -30,7 +31,15 @@ export function Clients() {
   const filteredClients = clients.filter(c =>
     c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     c.phone.includes(searchTerm)
-  );
+  ).sort((a, b) => {
+    if (sortBy === 'alphabetical') {
+      return a.name.localeCompare(b.name);
+    }
+    if (sortBy === 'recent') {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    }
+    return 0;
+  });
 
   const handleOpenAddModal = () => {
     setEditingClient(null);
@@ -132,14 +141,36 @@ export function Clients() {
 
       <Card>
         <CardHeader className="pb-3">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              placeholder="Pesquise por nome ou telefone..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-12 h-14 rounded-2xl bg-zinc-50 border-zinc-200 focus:ring-brand-500 text-lg font-medium"
-            />
+          <div className="flex flex-col md:flex-row gap-4 items-center">
+            <div className="relative flex-1 w-full">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Input
+                placeholder="Pesquise por nome ou telefone..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-12 h-14 rounded-2xl bg-zinc-50 border-zinc-200 focus:ring-brand-500 text-lg font-medium"
+              />
+            </div>
+
+            <div className="flex items-center gap-2 w-full md:w-auto bg-zinc-50 p-2 rounded-2xl border border-zinc-200 h-14">
+              <div className="pl-2">
+                <ArrowUpDown className="h-4 w-4 text-gray-400" />
+              </div>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as any)}
+                className="flex-1 md:w-40 bg-transparent py-1.5 text-xs font-bold text-gray-700 uppercase tracking-wider outline-none cursor-pointer appearance-none pr-8 relative"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right 0.5rem center',
+                  backgroundSize: '1rem'
+                }}
+              >
+                <option value="alphabetical">Ordem Alfabética</option>
+                <option value="recent">Últimos Cadastrados</option>
+              </select>
+            </div>
           </div>
         </CardHeader>
         <CardContent>

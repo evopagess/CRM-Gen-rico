@@ -5,7 +5,7 @@ import { Input } from '../components/ui/Input';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import { Modal } from '../components/ui/Modal';
 import { Badge } from '../components/ui/Badge';
-import { Plus, Calendar as CalendarIcon, Clock, MapPin, User, CheckCircle, AlertCircle, ChevronDown, FileText } from 'lucide-react';
+import { Plus, Calendar as CalendarIcon, Clock, MapPin, User, CheckCircle, AlertCircle, ChevronDown, FileText, ArrowUpDown } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import { Job, JobStatus, JobType, PaymentStatus } from '../types';
 import { format, parseISO, isAfter, isBefore, startOfDay, endOfDay } from 'date-fns';
@@ -18,6 +18,7 @@ export function Schedule() {
   const { jobs, clients, addJob, updateJob, settings } = useAppStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [filter, setFilter] = useState<'all' | 'today' | 'upcoming'>('all');
+  const [sortBy, setSortBy] = useState<'date' | 'alphabetical' | 'recent'>('date');
 
   const [newJob, setNewJob] = useState({
     clientId: '',
@@ -199,7 +200,20 @@ export function Schedule() {
       return isAfter(jobDate, todayEnd);
     }
     return true;
-  }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  }).sort((a, b) => {
+    if (sortBy === 'date') {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    }
+    if (sortBy === 'alphabetical') {
+      const clientA = clients.find(c => c.id === a.clientId)?.name || '';
+      const clientB = clients.find(c => c.id === b.clientId)?.name || '';
+      return clientA.localeCompare(clientB);
+    }
+    if (sortBy === 'recent') {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    }
+    return 0;
+  });
 
   return (
     <div className="space-y-6">
@@ -210,28 +224,51 @@ export function Schedule() {
         </Button>
       </div>
 
-      <div className="flex gap-2 overflow-x-auto pb-2">
-        <Button
-          variant={filter === 'all' ? 'primary' : 'outline'}
-          size="sm"
-          onClick={() => setFilter('all')}
-        >
-          Todos
-        </Button>
-        <Button
-          variant={filter === 'today' ? 'primary' : 'outline'}
-          size="sm"
-          onClick={() => setFilter('today')}
-        >
-          Hoje
-        </Button>
-        <Button
-          variant={filter === 'upcoming' ? 'primary' : 'outline'}
-          size="sm"
-          onClick={() => setFilter('upcoming')}
-        >
-          Próximos
-        </Button>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="flex gap-2 overflow-x-auto pb-2 w-full sm:w-auto">
+          <Button
+            variant={filter === 'all' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => setFilter('all')}
+          >
+            Todos
+          </Button>
+          <Button
+            variant={filter === 'today' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => setFilter('today')}
+          >
+            Hoje
+          </Button>
+          <Button
+            variant={filter === 'upcoming' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => setFilter('upcoming')}
+          >
+            Próximos
+          </Button>
+        </div>
+
+        <div className="flex items-center gap-2 w-full sm:w-auto bg-white p-1 rounded-xl shadow-sm border border-gray-100">
+          <div className="pl-2">
+            <ArrowUpDown className="h-4 w-4 text-gray-400" />
+          </div>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as any)}
+            className="flex-1 sm:w-40 bg-transparent py-1.5 text-xs font-bold text-gray-700 uppercase tracking-wider outline-none cursor-pointer appearance-none pr-8 relative"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 0.5rem center',
+              backgroundSize: '1rem'
+            }}
+          >
+            <option value="date">Por Data</option>
+            <option value="alphabetical">Alfabética</option>
+            <option value="recent">Última Criada</option>
+          </select>
+        </div>
       </div>
 
       <div className="space-y-4">

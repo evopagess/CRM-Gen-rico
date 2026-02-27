@@ -5,7 +5,7 @@ import { Input } from '../components/ui/Input';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import { Modal } from '../components/ui/Modal';
 import { Badge } from '../components/ui/Badge';
-import { Plus, FileText, Download, Trash2, User, Calendar } from 'lucide-react';
+import { Plus, FileText, Download, Trash2, User, Calendar, ArrowUpDown } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import { Quote, QuoteItem } from '../types';
 import { format, parseISO } from 'date-fns';
@@ -17,6 +17,7 @@ import autoTable from 'jspdf-autotable';
 export function Quotes() {
   const { quotes, clients, addQuote, updateQuote, deleteQuote, settings } = useAppStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [sortBy, setSortBy] = useState<'recent' | 'alphabetical' | 'total'>('recent');
 
   const [newQuote, setNewQuote] = useState({
     clientId: '',
@@ -200,9 +201,29 @@ export function Quotes() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <h1 className="text-2xl font-bold tracking-tight text-gray-900">Orçamentos</h1>
-        <Button onClick={() => setIsModalOpen(true)} className="w-full sm:w-auto">
-          <Plus className="mr-2 h-4 w-4" /> Novo Orçamento
-        </Button>
+        <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl shadow-sm border border-gray-100 flex-1 sm:flex-none">
+            <ArrowUpDown className="h-4 w-4 text-gray-400" />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as any)}
+              className="bg-transparent text-xs font-bold text-gray-700 uppercase tracking-wider outline-none cursor-pointer appearance-none pr-6 relative w-full sm:w-32"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'right center',
+                backgroundSize: '1rem'
+              }}
+            >
+              <option value="recent">Recentes</option>
+              <option value="alphabetical">Cliente (A-Z)</option>
+              <option value="total">Valor Total</option>
+            </select>
+          </div>
+          <Button onClick={() => setIsModalOpen(true)} className="w-full sm:w-auto">
+            <Plus className="mr-2 h-4 w-4" /> Novo Orçamento
+          </Button>
+        </div>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -215,7 +236,20 @@ export function Quotes() {
             <p className="text-sm mt-2 font-medium">Capture sua primeira oportunidade clicando em "Novo Orçamento".</p>
           </div>
         ) : (
-          quotes.map(quote => {
+          [...quotes].sort((a, b) => {
+            if (sortBy === 'recent') {
+              return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+            }
+            if (sortBy === 'alphabetical') {
+              const nameA = clients.find(c => c.id === a.clientId)?.name || '';
+              const nameB = clients.find(c => c.id === b.clientId)?.name || '';
+              return nameA.localeCompare(nameB);
+            }
+            if (sortBy === 'total') {
+              return b.total - a.total;
+            }
+            return 0;
+          }).map(quote => {
             const client = clients.find(c => c.id === quote.clientId);
 
             return (

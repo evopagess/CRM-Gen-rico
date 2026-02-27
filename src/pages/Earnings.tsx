@@ -3,14 +3,28 @@ import { useAppStore } from '../context/AppContext';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import { format, parseISO, startOfMonth, isWithinInterval, endOfMonth } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { DollarSign, TrendingUp, Calendar, Trash2 } from 'lucide-react';
+import { DollarSign, TrendingUp, Calendar, Trash2, ArrowUpDown } from 'lucide-react';
 
 export function Earnings() {
-    const { jobs, updateJob, deleteJob } = useAppStore();
+    const { jobs, clients, updateJob, deleteJob } = useAppStore();
+    const [sortBy, setSortBy] = React.useState<'date' | 'alphabetical' | 'value'>('date');
 
     const paidJobs = jobs
         .filter(job => job.paymentStatus === 'paid')
-        .sort((a, b) => parseISO(b.date).getTime() - parseISO(a.date).getTime());
+        .sort((a, b) => {
+            if (sortBy === 'date') {
+                return parseISO(b.date).getTime() - parseISO(a.date).getTime();
+            }
+            if (sortBy === 'alphabetical') {
+                const nameA = clients.find(c => c.id === a.clientId)?.name || '';
+                const nameB = clients.find(c => c.id === b.clientId)?.name || '';
+                return nameA.localeCompare(nameB);
+            }
+            if (sortBy === 'value') {
+                return b.price - a.price;
+            }
+            return 0;
+        });
 
     const totalHistorical = paidJobs.reduce((acc, job) => acc + job.price, 0);
 
@@ -69,8 +83,26 @@ export function Earnings() {
             </div>
 
             <Card>
-                <CardHeader>
+                <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <CardTitle>Todos os Recebimentos</CardTitle>
+                    <div className="flex items-center gap-2 bg-zinc-50 px-3 py-1.5 rounded-xl border border-zinc-100 w-full sm:w-auto">
+                        <ArrowUpDown className="h-4 w-4 text-gray-400" />
+                        <select
+                            value={sortBy}
+                            onChange={(e) => setSortBy(e.target.value as any)}
+                            className="bg-transparent text-xs font-bold text-gray-700 uppercase tracking-wider outline-none cursor-pointer appearance-none pr-6 relative w-full sm:w-32"
+                            style={{
+                                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'right center',
+                                backgroundSize: '1rem'
+                            }}
+                        >
+                            <option value="date">Por Data</option>
+                            <option value="alphabetical">Cliente (A-Z)</option>
+                            <option value="value">Valor</option>
+                        </select>
+                    </div>
                 </CardHeader>
                 <CardContent>
                     {paidJobs.length === 0 ? (
@@ -106,10 +138,16 @@ export function Earnings() {
                                             <td className="py-4">
                                                 <div className="flex flex-col">
                                                     <span className="text-sm font-medium text-zinc-900 group-hover:text-brand-600 transition-colors">{job.description}</span>
-                                                    <div className="flex items-center gap-1 mt-1">
-                                                        <Calendar size={10} className="text-zinc-400" />
-                                                        <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-tighter">
-                                                            {job.type === 'installation' ? 'Instalação' : job.type === 'maintenance' ? 'Manutenção' : 'Reparo'}
+                                                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mt-1">
+                                                        <div className="flex items-center gap-1">
+                                                            <Calendar size={10} className="text-zinc-400" />
+                                                            <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-tighter">
+                                                                {job.type === 'installation' ? 'Instalação' : job.type === 'maintenance' ? 'Manutenção' : 'Reparo'}
+                                                            </span>
+                                                        </div>
+                                                        <span className="hidden sm:inline text-zinc-300">•</span>
+                                                        <span className="text-[10px] text-zinc-500 font-black italic">
+                                                            {clients.find(c => c.id === job.clientId)?.name || 'Cliente Removido'}
                                                         </span>
                                                     </div>
                                                 </div>
