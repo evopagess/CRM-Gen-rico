@@ -91,8 +91,8 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
         {/* Bottom Section - Branding */}
         <div className="p-6 border-t border-zinc-100 bg-zinc-50/10">
           <div className="flex items-center justify-center transition-all duration-300 hover:scale-105">
-            <div className="h-10 w-full max-w-[120px] px-3 py-1.5 rounded-xl bg-zinc-900 shadow-lg shadow-zinc-900/10 flex items-center justify-center">
-              <img src="/loom_logo.png" alt="Logo" className="h-full w-full object-contain brightness-0 invert" />
+            <div className="w-full max-w-[140px] flex items-center justify-center">
+              <img src="/loom_logo.png" alt="Logo" className="w-full h-auto object-contain" />
             </div>
           </div>
         </div>

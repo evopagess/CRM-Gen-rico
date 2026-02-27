@@ -53,17 +53,12 @@ export function Onboarding() {
                 <div className="max-w-md w-full py-8 relative z-10 animate-in fade-in zoom-in duration-700">
                     <div className="flex flex-col items-center mb-12">
                         <div className="flex items-center justify-center mb-10">
-                            <div className="relative group p-6 rounded-[2.5rem] bg-white/5 backdrop-blur-sm border border-white/10 shadow-2xl transition-all duration-500 hover:bg-white/10 hover:border-white/20">
-                                {/* Glow Effect */}
-                                <div className="absolute inset-0 bg-brand-500/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                                <div className="relative w-40 sm:w-48 h-auto flex items-center justify-center pointer-events-none">
-                                    <img
-                                        src="/loom_logo.png"
-                                        alt="Logo"
-                                        className="w-full h-auto object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]"
-                                    />
-                                </div>
+                            <div className="w-40 sm:w-48 h-auto flex items-center justify-center pointer-events-none">
+                                <img
+                                    src="/loom_logo.png"
+                                    alt="Logo"
+                                    className="w-full h-auto object-contain"
+                                />
                             </div>
                         </div>
                         <p className="text-brand-100 font-bold uppercase tracking-[0.3em] text-[10px] sm:text-xs opacity-80 italic text-center">Redefinindo sua gestão profissional</p>
