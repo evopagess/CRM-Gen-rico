@@ -53,7 +53,7 @@ export function Onboarding() {
                 <div className="max-w-md w-full py-8 relative z-10 animate-in fade-in zoom-in duration-700">
                     <div className="flex flex-col items-center mb-12">
                         <div className="flex items-center justify-center mb-10">
-                            <div className="w-40 sm:w-48 h-auto flex items-center justify-center pointer-events-none">
+                            <div className="w-32 sm:w-40 h-auto flex items-center justify-center pointer-events-none">
                                 <img
                                     src="/loom_logo.png"
                                     alt="Logo"

@@ -90,10 +90,14 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
 
         {/* Bottom Section - Branding */}
         <div className="p-6 border-t border-zinc-100 bg-zinc-50/10">
-          <div className="flex items-center justify-center transition-all duration-300 hover:scale-105">
-            <div className="w-full max-w-[140px] flex items-center justify-center">
+          <div className="flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95">
+            <button
+              onClick={() => setActiveTab('dashboard')}
+              className="w-full max-w-[110px] flex items-center justify-center transition-opacity hover:opacity-80"
+              title="Ir para o Início"
+            >
               <img src="/loom_logo.png" alt="Logo" className="w-full h-auto object-contain" />
-            </div>
+            </button>
           </div>
         </div>
       </aside>
