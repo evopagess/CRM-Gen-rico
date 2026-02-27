@@ -36,7 +36,7 @@ export function Onboarding() {
     };
 
     return (
-        <div className="fixed inset-0 bg-[#050a1f] z-[100] overflow-y-auto overflow-x-hidden">
+        <div className="fixed inset-0 bg-black z-[100] overflow-y-auto overflow-x-hidden">
             <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-4 py-8">
                 {/* Animated Tech Background Elements */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
