@@ -55,7 +55,7 @@ export function Onboarding() {
                         <div className="flex items-center justify-center mb-10">
                             <div className="w-32 sm:w-40 h-auto flex items-center justify-center pointer-events-none">
                                 <img
-                                    src="/loom_logo.png"
+                                    src="/login_logo.png"
                                     alt="Logo"
                                     className="w-full h-auto object-contain"
                                 />
