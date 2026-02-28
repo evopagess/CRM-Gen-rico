@@ -93,7 +93,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
           <div className="flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95">
             <button
               onClick={() => setActiveTab('dashboard')}
-              className="w-full max-w-[110px] flex items-center justify-center transition-opacity hover:opacity-80"
+              className="w-full max-w-[110px] p-2 bg-white rounded-xl shadow-sm border border-zinc-100 flex items-center justify-center transition-opacity hover:opacity-90"
               title="Ir para o Início"
             >
               <img src="/loom_logo.png" alt="Logo" className="w-full h-auto object-contain" />
