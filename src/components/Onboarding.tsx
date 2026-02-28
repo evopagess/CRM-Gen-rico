@@ -53,14 +53,12 @@ export function Onboarding() {
                 <div className="max-w-md w-full py-8 relative z-10 animate-in fade-in zoom-in duration-700">
                     <div className="flex flex-col items-center mb-12">
                         <div className="flex items-center justify-center mb-10">
-                            <div className="bg-white p-4 rounded-[2rem] shadow-2xl shadow-white/5 flex items-center justify-center pointer-events-none">
-                                <div className="w-32 sm:w-40 h-auto flex items-center justify-center">
-                                    <img
-                                        src="/loom_logo.png"
-                                        alt="Logo"
-                                        className="w-full h-auto object-contain"
-                                    />
-                                </div>
+                            <div className="w-32 sm:w-40 h-auto flex items-center justify-center pointer-events-none">
+                                <img
+                                    src="/loom_logo.png"
+                                    alt="Logo"
+                                    className="w-full h-auto object-contain"
+                                />
                             </div>
                         </div>
                         <p className="text-brand-100 font-bold uppercase tracking-[0.3em] text-[10px] sm:text-xs opacity-80 italic text-center">Redefinindo sua gestão profissional</p>
