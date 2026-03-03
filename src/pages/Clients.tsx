@@ -27,6 +27,33 @@ export function Clients() {
     state: '',
     zipCode: ''
   });
+  const [isLoadingCep, setIsLoadingCep] = useState(false);
+
+  const handleZipCodeChange = async (cep: string) => {
+    const cleanCep = cep.replace(/\D/g, '');
+    setFormData(prev => ({ ...prev, zipCode: cep }));
+
+    if (cleanCep.length === 8) {
+      setIsLoadingCep(true);
+      try {
+        const { fetchAddressByCep } = await import('../utils/cep');
+        const address = await fetchAddressByCep(cleanCep);
+        if (address) {
+          setFormData(prev => ({
+            ...prev,
+            street: address.street,
+            neighborhood: address.neighborhood,
+            city: address.city,
+            state: address.state
+          }));
+        }
+      } catch (error) {
+        console.error('Error auto-filling CEP:', error);
+      } finally {
+        setIsLoadingCep(false);
+      }
+    }
+  };
 
   const filteredClients = clients.filter(c =>
     c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -273,8 +300,9 @@ export function Clients() {
                 label="CEP"
                 placeholder="Ex: 01234-567"
                 value={formData.zipCode}
-                onChange={e => setFormData({ ...formData, zipCode: e.target.value })}
+                onChange={e => handleZipCodeChange(e.target.value)}
                 required
+                className={isLoadingCep ? "animate-pulse" : ""}
               />
             </div>
           </div>
