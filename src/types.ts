@@ -48,7 +48,7 @@ export interface Quote {
 export interface Settings {
   companyName: string;
   logo?: string; // base64
-  username?: string;
+  email?: string;
   password?: string;
   onboardingCompleted: boolean;
 }

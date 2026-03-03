@@ -37,6 +37,11 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         if (parsed.settings && (!parsed.settings.logo || parsed.settings.logo.includes('src/assets'))) {
           parsed.settings.logo = '/logo.png';
         }
+        // Migration: Rename username to email
+        if (parsed.settings && parsed.settings.username && !parsed.settings.email) {
+          parsed.settings.email = parsed.settings.username;
+          delete parsed.settings.username;
+        }
         return {
           ...defaultState,
           ...parsed,
