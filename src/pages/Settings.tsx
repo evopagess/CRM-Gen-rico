@@ -3,7 +3,7 @@ import { useAppStore } from '../context/AppContext';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card';
-import { Save, Building2, Upload } from 'lucide-react';
+import { Save, Building2, Upload, Eye, EyeOff } from 'lucide-react';
 
 export function Settings() {
     const { settings, updateSettings } = useAppStore();
@@ -11,6 +11,7 @@ export function Settings() {
     const [logo, setLogo] = useState<string | undefined>(settings.logo);
     const [email, setEmail] = useState(settings.email || '');
     const [password, setPassword] = useState(settings.password || '');
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -68,11 +69,21 @@ export function Settings() {
                                 />
                                 <Input
                                     label="Senha"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     placeholder="Sua senha"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
+                                    rightElement={
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="text-zinc-400 hover:text-zinc-600 transition-colors p-1"
+                                            tabIndex={-1}
+                                        >
+                                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                        </button>
+                                    }
                                 />
                             </div>
 

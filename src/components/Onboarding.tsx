@@ -3,12 +3,13 @@ import { useAppStore } from '../context/AppContext';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card';
-import { Building2, Upload, Rocket } from 'lucide-react';
+import { Building2, Upload, Rocket, Eye, EyeOff } from 'lucide-react';
 
 export function Onboarding() {
     const { settings, updateSettings } = useAppStore();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleComplete = (e: React.FormEvent) => {
         e.preventDefault();
@@ -70,11 +71,21 @@ export function Onboarding() {
                                     />
                                     <Input
                                         label="Senha"
-                                        type="password"
+                                        type={showPassword ? "text" : "password"}
                                         placeholder="Sua senha"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         required
+                                        rightElement={
+                                            <button
+                                                type="button"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                                className="text-zinc-400 hover:text-zinc-600 transition-colors p-1"
+                                                tabIndex={-1}
+                                            >
+                                                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                            </button>
+                                        }
                                     />
                                 </div>
 
